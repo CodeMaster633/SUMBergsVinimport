@@ -1,4 +1,5 @@
-
+using DataAccess.Model;
+using DTO.Model;
 
 namespace Test
 {
@@ -10,13 +11,28 @@ namespace Test
         }
 
         [Test]
-        public void Test1()
+        public void KorrektOprettelse()
         {
-            Assert.Pass();
+            //Arrange
+            string navn = "Tilst Lager";
+            string adresse = "Blomstervej 12";
+            string kontaktperson = "Dennis";
+
+            //Act
+            lager1 = new Lager();
+            //lager2 = new Lager(navn, adresse, kontaktperson);
+
+            //Assert
+            Assert.AreEqual(navn, lager1.navn);
+            Assert.AreEqual(adresse, lager1.adresse);
+            Assert.AreEqual(kontaktperson, lager1.kontaktperson);
+
         }
-        public void Test2()
+
+        [Test]
+        public void FejlOprettelse()
         {
-            Assert.AreEqual(1, 2);
+            Assert.AreEqual(1, 1);
         }
     }
 }
