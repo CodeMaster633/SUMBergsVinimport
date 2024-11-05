@@ -14,5 +14,9 @@ namespace Test
         {
             Assert.Pass();
         }
+        public void Test2()
+        {
+            Assert.AreEqual(1, 2);
+        }
     }
 }
