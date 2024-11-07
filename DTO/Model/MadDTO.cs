@@ -1,12 +1,12 @@
 namespace DTO.Model;
 
-public class Mad : Produkt
+public class MadDTO : IProdukt
 {
-    public Mad()
+    public MadDTO()
     {
     }
 
-    public Mad(int id, int pris, string navn, string beskrivelse, DateTime udløbsdato)
+    public MadDTO(int id, int pris, string navn, string beskrivelse, DateTime udløbsdato)
     {
         Id = id;
         Pris = pris;

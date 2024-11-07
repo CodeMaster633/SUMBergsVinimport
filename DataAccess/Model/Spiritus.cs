@@ -1,12 +1,12 @@
-using DTO.Enums;
+using DataAccess.Enums;
 
-namespace DTO.Model;
+namespace DataAccess.Model;
 
-public class SpiritusDTO : IProdukt
+public class Spiritus
 {
-    public SpiritusDTO() { }
+    public Spiritus(){}
 
-    public SpiritusDTO(int id, int pris, string navn, string beskrivelse, string type,
+    public Spiritus(int id, int pris, string navn, string beskrivelse, string type,
         double alkoholprocent, double liter, int produktionsår, SpiritusType spiritusType)
     {
         Id = id;
@@ -19,6 +19,7 @@ public class SpiritusDTO : IProdukt
         Produktionsår = produktionsår;
         SpiritusType = spiritusType;
     }
+    
     public int Id { get; set; }
     public int Pris { get; set; }
     public string Navn { get; set; }
@@ -27,6 +28,5 @@ public class SpiritusDTO : IProdukt
     public string Type { get; set; }
     public double Alkoholprocent { get; set; }
     public int Produktionsår { get; set; }
-    public SpiritusType SpiritusType { get; set; }
-
+    public SpiritusType SpiritusType  { get; set; }
 }

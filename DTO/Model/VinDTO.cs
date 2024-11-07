@@ -2,11 +2,11 @@ using DTO.Enums;
 
 namespace DTO.Model;
 
-public class Vin : Produkt
+public class VinDTO : IProdukt
 {
-    public Vin(){}
+    public VinDTO(){}
 
-    public Vin(int id, int pris, string navn, string beskrivelse, VinType vinType, double liter)
+    public VinDTO(int id, int pris, string navn, string beskrivelse, VinType vinType, double liter)
     {
         Id = id;
         Pris = pris;

@@ -8,5 +8,6 @@ namespace DataAccess.Mappers
 {
 	internal class LagerMapper
 	{
+		
 	}
 }

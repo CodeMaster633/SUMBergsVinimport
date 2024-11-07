@@ -12,10 +12,10 @@ namespace BusinessLogic.BLL
 	{
 		public void OpretProdukt(IProdukt produkt)
 		{
-
+			
 		}
 
-		public IProdukt GetProdukt(string produktId)
+		public IProdukt GetProdukt(int produktId)
 		{
 			return null;
 		}

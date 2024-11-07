@@ -1,11 +1,9 @@
-namespace DTO.Model
-{
+namespace DataAccess.Model;
 
-    public interface Produkt
-    {
+interface IProdukt
+{
     int Id { get; set; }
     int Pris { get; set; }
     string Navn { get; set; }
     string Beskrivelse { get; set; }
-    }
 }

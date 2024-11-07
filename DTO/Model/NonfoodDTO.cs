@@ -1,10 +1,10 @@
 namespace DTO.Model;
 
-public class Nonfood : Produkt
+public class NonfoodDTO : IProdukt
 {
- public Nonfood(){}
+ public NonfoodDTO(){}
 
- public Nonfood(int id, int pris, string navn, string beskrivelse)
+ public NonfoodDTO(int id, int pris, string navn, string beskrivelse)
  {
   Id = id;
   Pris = pris;
