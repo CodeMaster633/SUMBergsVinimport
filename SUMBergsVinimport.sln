@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{BDADD71C-6CDB-4637-B558-D7E030F200B9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{A53CB58E-FDCD-4996-B47D-FABAFFF681D1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FA85EAD0-0125-4D6B-9825-1C25EEA0F678} = {FA85EAD0-0125-4D6B-9825-1C25EEA0F678}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BergVinGUI", "BergVinGUI\BergVinGUI.csproj", "{94E123B9-F2C0-4B9D-8A88-E6C8C8A2F45A}"
 EndProject
