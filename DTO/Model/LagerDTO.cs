@@ -10,13 +10,15 @@ namespace DataAccess.Model
     {
         public LagerDTO() { }
 
-        public LagerDTO(string navn, string adresse, string kontaktperson)
+        public LagerDTO(int id, string navn, string adresse, string kontaktperson)
         {
+            Id = id;
             Navn = navn;
             Adresse = adresse;
             Kontaktperson = kontaktperson;
         }
 
+        public int Id { get; set; }
         public string Navn { get; set; }
         public string Adresse { get; set; }
         public string Kontaktperson { get; set; }
