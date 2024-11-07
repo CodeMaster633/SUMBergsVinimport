@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Model
 {
-    public class Lager
+    public class LagerDTO
     {
-        public Lager() { }
+        public LagerDTO() { }
 
-        public Lager(string navn, string adresse, string kontaktperson)
+        public LagerDTO(string navn, string adresse, string kontaktperson)
         {
             Navn = navn;
             Adresse = adresse;
