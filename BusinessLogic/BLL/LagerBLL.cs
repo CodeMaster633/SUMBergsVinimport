@@ -14,13 +14,20 @@ namespace BussinessLogic.BLL
 	public class LagerBLL
 	{
 		public void OpretProdukt(IProdukt produkt)
+		{
+			
+		}
         public LagerDTO getLager(int id)
 		{
             //if (id < 0) throw new IndexOutOfRangeException();
             return LagerRepository.getLager(id);
 			
 		}
-        public List<LagerDTO> getLagre()
+
+		public List<LagerDTO> getLagre()
+		{
+			
+		}
 
 		public IProdukt GetProdukt(int produktId)
 		{
