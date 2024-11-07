@@ -5,7 +5,7 @@
 
     <VerticalStackLayout>
 
-        <CollectionView  x:Name="CollectionViewLager" SelectionMode="Multiple" SelectionChanged="OnLagerSelectionChanged">
+        <CollectionView  x:Name="CollectionViewLager">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>

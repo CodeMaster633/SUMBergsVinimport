@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using DataAccess.Model;
 using Moq;
-using BusinessLogic.BLL;
+using BussinessLogic.BLL;
 
 namespace Test
 {

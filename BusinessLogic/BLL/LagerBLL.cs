@@ -14,6 +14,9 @@ namespace BussinessLogic.BLL
 	public class LagerBLL
 	{
 		public void OpretProdukt(IProdukt produkt)
+		{
+			
+		}
         public LagerDTO getLager(int id)
 		{
             //if (id < 0) throw new IndexOutOfRangeException();
@@ -21,11 +24,15 @@ namespace BussinessLogic.BLL
 			
 		}
         public List<LagerDTO> getLagre()
+		{
+			return LagerRepository.getLagre();
+			
+		}
 
 		public IProdukt GetProdukt(int produktId)
 		{
-            return LagerRepository.getLagre();
 			return null;
+			
 		}
         //public void AddLager(LagerDTO lager)
         //{
