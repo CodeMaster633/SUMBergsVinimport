@@ -1,6 +1,6 @@
 namespace DataAccess.Model;
 
-public class Øl
+public class Øl : IProdukt
 {
     public Øl() {}
 

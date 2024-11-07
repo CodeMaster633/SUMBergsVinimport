@@ -1,8 +1,9 @@
 using DataAccess.Enums;
+using VinType = DTO.Enums.VinType;
 
 namespace DataAccess.Model;
 
-public class Vin
+public class Vin : IProdukt
 {
     public Vin(){}
 
@@ -20,6 +21,6 @@ public class Vin
     public int Pris { get; set; }
     public string Navn { get; set; }
     public string Beskrivelse { get; set; }
-    public VinType VinType { get; set; }
+    public DTO.Enums.VinType VinType { get; set; }
     public double Liter { get; set; }
 }

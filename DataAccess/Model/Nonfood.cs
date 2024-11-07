@@ -1,6 +1,6 @@
 namespace DataAccess.Model;
 
-public class Nonfood
+public class Nonfood : IProdukt
 {
     public Nonfood() {}
 
