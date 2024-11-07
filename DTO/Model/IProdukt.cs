@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace DTO.Model
 {
-	internal interface IProduktOversigt
+	public interface IProdukt
 	{
-
-	
+		public string ProduktId {  get; set; }
 	}
 }
