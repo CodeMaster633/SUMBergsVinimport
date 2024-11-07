@@ -8,6 +8,6 @@ namespace DTO.Model
 {
 	public class Ol : IProdukt
 	{
-
+		public string ProduktId { get; set; }
 	}
 }
