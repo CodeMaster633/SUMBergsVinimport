@@ -18,12 +18,13 @@ namespace Test
         public void KorrektOprettelse()
         {
             //Arrange
+            int id = 1;
             string navn = "Tilst Lager";
             string adresse = "Blomstervej 12";
             string kontaktperson = "Dennis";
 
             //Act
-            var lager1 = new Lager(navn, adresse, kontaktperson); 
+            var lager1 = new Lager(id, navn, adresse, kontaktperson);
 
             //Assert
             Assert.AreEqual(navn, lager1.Navn); 

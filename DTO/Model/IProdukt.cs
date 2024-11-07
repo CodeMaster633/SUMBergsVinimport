@@ -8,6 +8,9 @@ namespace DTO.Model
 {
 	public interface IProdukt
 	{
-		public string ProduktId {  get; set; }
+		int Id { get; set; }
+		int Pris { get; set; }
+		string Navn { get; set; }
+		string Beskrivelse { get; set; }
 	}
 }

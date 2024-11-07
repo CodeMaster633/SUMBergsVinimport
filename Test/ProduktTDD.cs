@@ -18,7 +18,7 @@ namespace Test
 		[SetUp]
 		public void Setup()
 		{
-			_produktDTO = new Ol();
+			_produktDTO = new ØlDTO();
 			_lagerBll = new LagerBLL();
 		}
 
@@ -37,7 +37,7 @@ namespace Test
 
 			//ACT
 			_lagerBll.OpretProdukt(_produktDTO);
-			IProdukt produktTDD = _lagerBll.GetProdukt(_produktDTO.ProduktId);
+			IProdukt produktTDD = _lagerBll.GetProdukt(_produktDTO.Id);
 
 
 
