@@ -14,7 +14,7 @@ namespace BergVinGUI
                 InitializeComponent();
 
                 
-                //CollectionViewLager.ItemsSource = lagerBLL.getLagre();
+                CollectionViewLager.ItemsSource = lagerBLL.getLagre();
 
 
             }

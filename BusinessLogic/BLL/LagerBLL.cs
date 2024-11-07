@@ -23,16 +23,16 @@ namespace BussinessLogic.BLL
             return LagerRepository.getLager(id);
 			
 		}
-
-		public List<LagerDTO> getLagre()
+        public List<LagerDTO> getLagre()
 		{
+			return LagerRepository.getLagre();
 			
 		}
 
 		public IProdukt GetProdukt(int produktId)
 		{
-            return LagerRepository.getLagre();
 			return null;
+			
 		}
         //public void AddLager(LagerDTO lager)
         //{
