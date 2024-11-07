@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTO.Model
+namespace BusinessLogic.BLL
 {
-	internal interface IProduktOversigt
+	public class LagerBLL
 	{
-
-	
+		public void OpretProdukt(Produkt)
 	}
 }
