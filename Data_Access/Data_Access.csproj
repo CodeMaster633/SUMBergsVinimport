@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DTO_\DTO_.csproj" />
-    <ProjectReference Include="..\Test_Unit\Test_Unit.csproj" />
   </ItemGroup>
 
 </Project>
