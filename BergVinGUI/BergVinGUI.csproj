@@ -1,7 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0-windows10.0.19041.0</TargetFrameworks>
+		<TargetFrameworks>net7.0-windows10.0.19041.0</TargetFrameworks>
+
+
 		<OutputType>Exe</OutputType>
 		<RootNamespace>BergVinGUI</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -55,5 +57,16 @@
 		<ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj" />
 		<ProjectReference Include="..\DTO\DTO.csproj" />
 	</ItemGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Microsoft.WinUI" Version="3.0.0-preview4.210210.4" >
+		<Aliases>webview2</Aliases>
+		</PackageReference>
+		<!--<PackageReference Include="Microsoft.WinUI" Version="3.0.0">
+			<Aliases>winui</Aliases>
+		</PackageReference>-->
+	</ItemGroup>
+
+
 
 </Project>

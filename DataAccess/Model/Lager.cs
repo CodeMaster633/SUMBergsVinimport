@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,14 +11,14 @@ namespace DataAccess.Model
     {
         public Lager() { }
 
-        public Lager(int id, string navn, string adresse, string kontaktperson)
+        public Lager(string navn, string adresse, string kontaktperson)
         {
-            Id = id;
             Navn = navn;
             Adresse = adresse;
             Kontaktperson = kontaktperson;
         }
 
+        [Key]
         public int Id { get; set; }
         public string Navn { get; set; }
         public string Adresse { get; set; }
