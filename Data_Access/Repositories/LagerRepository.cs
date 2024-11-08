@@ -33,15 +33,37 @@ namespace Data_Access.Repositories
                 return lagreDTO;
                 }
             }
-        }
-        //public static void AddLager(LagerDTO lager)
-        //{
-        //    using (LagerContext context = new LagerContext())
-        //    {
-        //        DataAccess.Model.Lager emp = LagerMapper.Map(lager);
-        //        context.Lagre.Add(emp);
-        //        context.SaveChanges();
-        //    }
-        //}
-    }
 
+
+		public void TildelRelation(string parentId, string childId, DTO_.Model.ReltationType relationType)
+		{
+			//     usning()
+			//switch (relationType)
+			//{
+			//	case ReltationType.LagerTilReol:
+			//		var lager = _context.Lagere.Find(parentId);
+			//		var reol = _context.Reoler.Find(childId);
+			//		if (lager == null || reol == null) throw new Exception("Lager eller Reol ikke fundet.");
+			//		reol.LagerId = parentId;
+			//		break;
+			//}
+		}
+
+	}
+
+
+
+}
+
+
+
+
+	//public static void AddLager(LagerDTO lager)
+	//{
+	//    using (LagerContext context = new LagerContext())
+	//    {
+	//        DataAccess.Model.Lager emp = LagerMapper.Map(lager);
+	//        context.Lagre.Add(emp);
+	//        context.SaveChanges();
+	//    }
+	//}
