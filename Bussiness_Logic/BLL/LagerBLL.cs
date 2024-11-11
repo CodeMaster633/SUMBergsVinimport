@@ -109,11 +109,11 @@ namespace Business_Logic.BLL
 
 
 		}
-			//public void AddLager(LagerDTO lager)
-			//{
-			//    //valider lager
-			//    LagerRepository.AddLager(lager);
-			//}
-
+		public void AddLager(LagerDTO lager)
+		{
+			//valider lager
+			LagerRepository.AddLager(lager);
 		}
+
+	}
 }

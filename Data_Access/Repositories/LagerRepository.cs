@@ -163,6 +163,16 @@ namespace Data_Access.Repositories
 			//}
 		}
 
+public static void AddLager(LagerDTO lager)
+{
+	using (LagerContext context = new LagerContext())
+	{
+		Data_Access.Model.Lager lag = LagerMapper.Map(lager);
+		context.Lagre.Add(lag);
+		context.SaveChanges();
+	}
+}
+}
 	}
 
 
@@ -174,12 +184,3 @@ namespace Data_Access.Repositories
 
 
 
-	//public static void AddLager(LagerDTO lager)
-	//{
-	//    using (LagerContext context = new LagerContext())
-	//    {
-	//        DataAccess.Model.Lager emp = LagerMapper.Map(lager);
-	//        context.Lagre.Add(emp);
-	//        context.SaveChanges();
-	//    }
-	//}
