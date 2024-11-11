@@ -9,9 +9,9 @@ namespace DTO_.Model
 	public class ØlDTO : IProdukt
 	{
 		public ØlDTO(){}
-		public ØlDTO(int id, int pris, string navn, string beskrivelse, DateTime udløbsDato, double liter)
+		public ØlDTO( int pris, string navn, string beskrivelse, DateTime udløbsDato, double liter)
 		{
-			Id = id;
+		
 			Pris = pris;
 			Navn = navn;
 			Beskrivelse = beskrivelse;

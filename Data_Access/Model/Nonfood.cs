@@ -1,6 +1,6 @@
 namespace Data_Access.Model;
 
-public class Nonfood : IProdukt
+public class Nonfood : Produkt
 {
     public Nonfood() {}
 
@@ -11,9 +11,6 @@ public class Nonfood : IProdukt
         Navn = navn;
         Beskrivelse = beskrivelse;
     }
-    public int Id { get; set; }
-    public int Pris { get; set; }
-    public string Navn { get; set; }
-    public string Beskrivelse { get; set; }
+   
     
 }

@@ -7,17 +7,50 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DTO_.Model;
-using Data_Access.Model;
 using Microsoft.EntityFrameworkCore;
 
 namespace Business_Logic.BLL
 {
 	public class LagerBLL
 	{
+		//Opret produkt tager Super klasen for at gør denne metode mulige at oprette alle produkt sub typer i databasen
 		public void OpretProdukt(IProdukt produkt)
 		{
-			
+			LagerRepository.OpretProdukt(produkt);
 		}
+
+        public MadDTO GetMadProdukt(int produktId)
+        {
+            return LagerRepository.GetMadById(produktId);
+
+        }
+
+        public VinDTO GetVinProdukt(int produktId)
+        {
+            return LagerRepository.GetVinById(produktId);
+        }
+
+        public ØlDTO GetØlProdukt(int produktId)
+        {
+            return LagerRepository.GetØlById(produktId);
+        }
+
+        public SpiritusDTO GetSpiritusProdukt(int produktId)
+        {
+            return LagerRepository.GetSpiritusDTO(produktId);
+        }
+
+        public NonfoodDTO GetNonfoodProdukt(int produktId)
+        {
+            return LagerRepository.GetNonfoodDTO(produktId);
+        }
+
+
+	
+
+
+		//Lager Funktionalitet 
+
         public LagerDTO getLager(int id)
 		{
             //if (id < 0) throw new IndexOutOfRangeException();
@@ -30,13 +63,19 @@ namespace Business_Logic.BLL
 			
 		}
 
-		public IProdukt GetProdukt(int produktId)
-		{
-			return null;
+		//public MadDTO GetProdukt(int produktId)
+		//{
+		//	return LagerRepository.GetMadById(produktId);
 			
-		}
+		//}
 
-		public void TildelPladsProdut(string pladsId, string produktId)
+
+
+
+
+		//Tildeling af lokation funktion
+
+        public void TildelPladsProdut(string pladsId, string produktId)
 		{
 
 		}

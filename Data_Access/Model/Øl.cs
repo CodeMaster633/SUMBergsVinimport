@@ -1,6 +1,6 @@
 namespace Data_Access.Model;
 
-public class Øl : IProdukt
+public class Øl : Produkt
 {
     public Øl() {}
 
@@ -15,10 +15,7 @@ public class Øl : IProdukt
     }
     
     
-    public int Id { get; set; }
-    public int Pris { get; set; }
-    public string Navn { get; set; }
-    public string Beskrivelse { get; set; }
+   
     public DateTime Udløbsdato { get; set; }
     public double Liter { get; set; }
 }

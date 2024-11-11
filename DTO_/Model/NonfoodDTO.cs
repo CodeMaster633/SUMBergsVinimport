@@ -4,9 +4,9 @@ public class NonfoodDTO : IProdukt
 {
  public NonfoodDTO(){}
 
- public NonfoodDTO(int id, int pris, string navn, string beskrivelse)
+ public NonfoodDTO( int pris, string navn, string beskrivelse)
  {
-  Id = id;
+
   Pris = pris;
   Navn = navn;
   Beskrivelse = beskrivelse;

@@ -6,9 +6,9 @@ public class VinDTO : IProdukt
 {
     public VinDTO(){}
 
-    public VinDTO(int id, int pris, string navn, string beskrivelse, VinType vinType, double liter)
+    public VinDTO( int pris, string navn, string beskrivelse, VinType vinType, double liter)
     {
-        Id = id;
+      
         Pris = pris;
         Navn = navn;
         Beskrivelse = beskrivelse;
