@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bussiness_Logic\Business_Logic.csproj" />
+    <ProjectReference Include="..\DTO_\DTO_.csproj" />
   </ItemGroup>
 
 </Project>

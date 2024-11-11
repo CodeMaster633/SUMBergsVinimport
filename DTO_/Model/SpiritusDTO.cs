@@ -6,10 +6,9 @@ public class SpiritusDTO : IProdukt
 {
     public SpiritusDTO() { }
 
-    public SpiritusDTO(int id, int pris, string navn, string beskrivelse,
+    public SpiritusDTO( int pris, string navn, string beskrivelse,
         double alkoholprocent, double liter, int produktionsår, SpiritusType spiritusType)
     {
-        Id = id;
         Pris = pris;
         Navn = navn;
         Beskrivelse = beskrivelse;

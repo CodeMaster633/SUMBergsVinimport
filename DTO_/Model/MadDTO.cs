@@ -6,9 +6,9 @@ public class MadDTO : IProdukt
     {
     }
 
-    public MadDTO(int id, int pris, string navn, string beskrivelse, DateTime udløbsdato)
+    public MadDTO( int pris, string navn, string beskrivelse, DateTime udløbsdato)
     {
-        Id = id;
+       
         Pris = pris;
         Navn = navn;
         Beskrivelse = beskrivelse;
