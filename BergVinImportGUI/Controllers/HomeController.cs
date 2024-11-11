@@ -1,4 +1,5 @@
 using BergVinImportGUI.Models;
+using Business_Logic.BLL;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,6 +16,9 @@ namespace BergVinImportGUI.Controllers
 
         public IActionResult Index()
         {
+            LagerBLL lagerBLL = new LagerBLL();
+            lagerBLL.getLager(1);
+
             return View();
         }
 

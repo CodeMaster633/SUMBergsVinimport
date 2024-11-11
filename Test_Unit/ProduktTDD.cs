@@ -31,9 +31,6 @@ namespace Test_Unit
 
 
 
-
-
-
 			//ACT
 			_lagerBll.OpretProdukt(_produktDTO);
 			IProdukt produktTDD = _lagerBll.GetProdukt(_produktDTO.Id);
