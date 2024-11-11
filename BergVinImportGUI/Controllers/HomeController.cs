@@ -25,6 +25,8 @@ namespace BergVinImportGUI.Controllers
             //lagerBll.OpretProdukt(nonfoodDTO);
             //lagerBll.OpretProdukt(sp);
             ViewBag.Mad = lagerBll.GetMadProdukt(2).Navn;
+            lagerBLL.getLager(1);
+
             return View();
         }
 

@@ -13,15 +13,22 @@ namespace DTO_.Model
 
         public LagerDTO(string navn, string adresse, string kontaktperson)
         {
-            
+
             Navn = navn;
             Adresse = adresse;
             Kontaktperson = kontaktperson;
+            Reoler = new List<ReolDTO>();
+
+            //for (int i = 0; i < antalReoler; i++)
+            //{
+            //    Reoler.Add(new ReolDTO());
+            //}
         }
         [Key]
-        public int Id { get; set; }
+        public int LagerId { get; set; }
         public string Navn { get; set; }
         public string Adresse { get; set; }
         public string Kontaktperson { get; set; }
+        public List<ReolDTO> Reoler {get;set;}
     }
 }

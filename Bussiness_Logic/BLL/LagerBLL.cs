@@ -18,6 +18,10 @@ namespace Business_Logic.BLL
 		{
 			LagerRepository.OpretProdukt(produkt);
 		}
+		public List<IProdukt> GetAlleProdukt()
+		{
+			return LagerRepository.GetAlleProdukter();
+		}
 
         public MadDTO GetMadProdukt(int produktId)
         {
@@ -105,11 +109,11 @@ namespace Business_Logic.BLL
 
 
 		}
-			//public void AddLager(LagerDTO lager)
-			//{
-			//    //valider lager
-			//    LagerRepository.AddLager(lager);
-			//}
-
+		public void AddLager(LagerDTO lager)
+		{
+			//valider lager
+			LagerRepository.AddLager(lager);
 		}
+
+	}
 }

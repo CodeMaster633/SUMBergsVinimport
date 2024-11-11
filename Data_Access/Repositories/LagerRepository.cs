@@ -123,15 +123,28 @@ namespace Data_Access.Repositories
          }
 
 
-        //public static List<IProdukt> GetAlleProdukter()
-        //{
-        //    using (LagerContext context = new LagerContext())
-        //    {
-        //        //Man kan bruge entity framework til at samle  ale produktyper i  en list 
-                
-        //    }
+        public static List<DTO_.Model.IProdukt> GetAlleProdukter()
+        {
+           using (LagerContext context = new LagerContext())
+           {
+                //Man kan bruge entity framework til at samle  ale produktyper i  en list 
+                List<MadDTO>madProdukter = context.Mad.Select(m=> ProduktMapper.MapTilMadDTO(m)).ToList();
+                List<VinDTO> vinProdukter = context.Vin.Select(v=> ProduktMapper.MapVinTilDTO(v)).ToList();
+                List<ØlDTO> ølProdukter = context.Øls.Select(o=> ProduktMapper.MapØlTilDTO(o)).ToList();
+                List<NonfoodDTO> nonFoddProdukter = context.Nonfoods.Select(nF=> ProduktMapper.MapTilNonfoodDTO(nF)).ToList();  
+                List<SpiritusDTO> spiritusProdukter = context.Spiritus.Select(s=> ProduktMapper.MapTilSpiritusDTO(s)).ToList();
 
-        //}
+                //Kombinere alle samlinger en samlet liste for Iprodukter
+                List<DTO_.Model.IProdukt> alleProdukter = new List<DTO_.Model.IProdukt>();
+                alleProdukter.AddRange(madProdukter);
+                alleProdukter.AddRange(spiritusProdukter);
+                alleProdukter.AddRange(vinProdukter);
+                alleProdukter.AddRange(nonFoddProdukter);
+                alleProdukter.AddRange(ølProdukter);
+                return alleProdukter;   
+           }
+
+        }
 
 
 
@@ -150,6 +163,16 @@ namespace Data_Access.Repositories
 			//}
 		}
 
+public static void AddLager(LagerDTO lager)
+{
+	using (LagerContext context = new LagerContext())
+	{
+		Data_Access.Model.Lager lag = LagerMapper.Map(lager);
+		context.Lagre.Add(lag);
+		context.SaveChanges();
+	}
+}
+}
 	}
 
 
@@ -161,12 +184,3 @@ namespace Data_Access.Repositories
 
 
 
-	//public static void AddLager(LagerDTO lager)
-	//{
-	//    using (LagerContext context = new LagerContext())
-	//    {
-	//        DataAccess.Model.Lager emp = LagerMapper.Map(lager);
-	//        context.Lagre.Add(emp);
-	//        context.SaveChanges();
-	//    }
-	//}
