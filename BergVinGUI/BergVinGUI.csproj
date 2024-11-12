@@ -69,4 +69,10 @@
 
 
 
+	<!-- Platform-Specific XAML Files -->
+	<ItemGroup Condition="$(TargetFramework.Contains('-windows'))">
+		<MauiXaml Include="Platforms\Windows\App.xaml" />
+	</ItemGroup>
+	
+
 </Project>
