@@ -59,21 +59,27 @@ namespace Business_Logic.BLL
 		}
         public List<LagerDTO> getLagre()
 		{
-			return LagerRepository.getLagre();
+			return LagerRepository.getLagre() ?? new List<LagerDTO>();
 			
 		}
 
-		//public MadDTO GetProdukt(int produktId)
-		//{
-		//	return LagerRepository.GetMadById(produktId);
-			
-		//}
+        public void AddLager(LagerDTO lager)
+        {
+            //valider lager
+            LagerRepository.AddLager(lager);
+        }
+
+        //public MadDTO GetProdukt(int produktId)
+        //{
+        //	return LagerRepository.GetMadById(produktId);
+
+        //}
 
 
 
 
 
-		//Tildeling af lokation funktion
+        //Tildeling af lokation funktion
 
         public void TildelPladsProdut(string pladsId, string produktId)
 		{
@@ -105,11 +111,7 @@ namespace Business_Logic.BLL
 
 
 		}
-		public void AddLager(LagerDTO lager)
-		{
-			//valider lager
-			LagerRepository.AddLager(lager);
-		}
+		
 
 	}
 }

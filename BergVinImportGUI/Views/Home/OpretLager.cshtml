@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Opret Lager";
+}
+<h1>@ViewData["Title"]</h1>
+
+@using (Html.BeginForm("LagerIndex", "Home"))
+{
+    <p>Nuværende lagre: </p>
+    @Html.ListBox("LagreList", new SelectList(@ViewBag.Lagre, "Navn", "Navn"))
+    <br />
+}
+
+@using (Html.BeginForm("AddLager", "Home", FormMethod.Post))
+{
+    <p>Indtast oplysninger og tryk 'Opret'</p>
+    <br />
+    @Html.Label("Navn: ")
+    @Html.TextArea("Navn")
+
+    <br />
+    @Html.Label("Adresse: ")
+    @Html.TextArea("Adresse")
+
+    <br />
+    @Html.Label("Kontaktperson: ")
+    @Html.TextArea("Kontaktperson")
+
+    <button type="submit">Opret</button>
+}

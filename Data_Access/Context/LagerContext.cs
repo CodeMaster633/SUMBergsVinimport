@@ -18,8 +18,8 @@ namespace Data_Access.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-			//optionsBuilder.UseSqlServer("Data Source=LAPTOP-TT7JTDJT\\SQLEXPRESS;Initial Catalog=Lager;Integrated Security = SSPI; TrustServerCertificate=true");
-            optionsBuilder.UseSqlServer("Data Source=LAPTOP-CP8PKIBC\\SQLEXPRESS;Initial Catalog=Lager;Integrated Security=True; TrustServerCertificate=true");
+			optionsBuilder.UseSqlServer("Data Source=LAPTOP-TT7JTDJT\\SQLEXPRESS;Initial Catalog=Lagre;Integrated Security = SSPI; TrustServerCertificate=true");
+            //optionsBuilder.UseSqlServer("Data Source=LAPTOP-CP8PKIBC\\SQLEXPRESS;Initial Catalog=Lagre;Integrated Security=True; TrustServerCertificate=true");
 
             //optionsBuilder.UseSqlServer("Data Source=LAPTOP-CP8PKIBC\\SQLEXPRESS;Initial Catalog=Lagre;Integrated Security = SSPI; TrustServerCertificate=true");
             optionsBuilder.LogTo(message => Debug.WriteLine(message));
@@ -42,6 +42,7 @@ namespace Data_Access.Context
         new Reol { ReolId = 4,  LagerId = 2 },
         new Reol { ReolId = 5,  LagerId = 3 },
         new Reol { ReolId = 6,  LagerId = 3 }
+            });
             //Benytter TPT  Produkt er Basetype tabellen for de andre tabeller som nedarver
             //Klassen Produkt er lavet fordi man ikke kan bruger interface
             modelBuilder.Entity<Produkt>().ToTable("Produkt"); 
@@ -57,14 +58,6 @@ namespace Data_Access.Context
             modelBuilder.Entity<Produkt>()
             .Property(p => p.Id)
             .ValueGeneratedOnAdd(); // SQL Server genererer automatisk Id
-
-            modelBuilder.Entity<Lager>().HasData(new Lager[] {
-                new Lager{Id=-1,Navn="Tilst Lager", Adresse="Tilst", Kontaktperson="Dennis"},
-                new Lager{Id=-2,Navn="Harlev Butik", Adresse="Harlev", Kontaktperson="Dennis" },
-                new Lager{Id=-3,Navn="Harlev Lager", Adresse="Harlev", Kontaktperson="Dennis"}
-            });
-
-            
 
 
 		}

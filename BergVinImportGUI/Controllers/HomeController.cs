@@ -8,6 +8,7 @@ namespace BergVinImportGUI.Controllers
 {
     public class HomeController : Controller
     {
+        private LagerBLL lagerBll = new LagerBLL();
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -17,21 +18,31 @@ namespace BergVinImportGUI.Controllers
 
         public IActionResult Index()
         {
-            LagerBLL lagerBll = new LagerBLL();
-            MadDTO mad = new MadDTO( 200, "Chokolade", "DEtte er lækkert chokolade", new DateTime(2025, 11, 10));
-            //SpiritusDTO sp = new SpiritusDTO( 100, "DRINKS", "DETTE ER LÆKKERT", 100.00, 20, 2020, DTO_.Enums.SpiritusType.Whiskey);
-            //NonfoodDTO nonfoodDTO = new NonfoodDTO(200,"Glas","MEGET PÆNT GLAS");
+            MadDTO mad = new MadDTO(200, "Chokolade", "Dette er lækkert chokolade", new DateTime(2025, 11, 10));
             lagerBll.OpretProdukt(mad);
-            //lagerBll.OpretProdukt(nonfoodDTO);
-            //lagerBll.OpretProdukt(sp);
-            ViewBag.Mad = lagerBll.GetMadProdukt(2).Navn;
-            lagerBLL.getLager(1);
-
+            ViewBag.Mad = lagerBll.GetMadProdukt(1).Navn;
+            lagerBll.getLager(1);
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult LagerIndex()
         {
+            ViewBag.Lagre = lagerBll.getLagre();
+            return View();
+        }
+
+        //[HttpPost]
+        public ActionResult AddLager(IFormCollection formData)
+        {
+            lagerBll.AddLager(new LagerDTO(formData["Navn"], formData["Adresse"], formData["Kontaktperson"]));
+            ViewBag.Lagre = lagerBll.getLagre();
+
+            return View("OpretLager");
+        }
+
+        public IActionResult OpretLager()
+        {
+            ViewBag.Lagre = lagerBll.getLagre();
             return View();
         }
 
@@ -41,4 +52,5 @@ namespace BergVinImportGUI.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+
 }
