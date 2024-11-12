@@ -9,7 +9,6 @@ namespace DTO_.Model
     public class ReolDTO
     {
 
-
         public ReolDTO() { }
         public int ReolId { get; set; }
         public LagerDTO Lager { get; set; }

@@ -20,10 +20,6 @@ namespace Data_Access.Model
             Kontaktperson = kontaktperson;
             Reoler = new List<Reol>();
 
-            //for (int i = 0; i < antalReoler; i++)
-            //{
-            //    Reoler.Add(new Reol());
-            //}
         }
         [Key]
         public int LagerId { get; set; }
