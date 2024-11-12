@@ -21,7 +21,6 @@ namespace Test_Unit
             string navn = "Tilst Lager";
             string adresse = "Blomstervej 12";
             string kontaktperson = "Dennis The Man";
-            //int antalReoler = 2;
 
             //Act
             var lager1 = new LagerDTO(navn, adresse, kontaktperson);
@@ -34,7 +33,6 @@ namespace Test_Unit
             Assert.AreEqual(navn, lager2.Navn);
             Assert.AreEqual(adresse, lager2.Adresse);
             Assert.AreEqual(kontaktperson, lager2.Kontaktperson);
-            //Assert.That(lager2.Reoler.Count(), Is.EqualTo(antalReoler));
 
         }
     }
