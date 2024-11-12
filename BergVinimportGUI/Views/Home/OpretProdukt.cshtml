@@ -1,0 +1,221 @@
+﻿@{
+    string selectedProductType = ViewBag.SelectedPropertyType as string;
+}
+
+@using (Html.BeginForm("OpretProdukt", "Home"))
+{
+    @Html.DropDownList("Produkters", ViewBag.Produkters as List<SelectListItem>, "Vælg produkt")
+    <button type="submit" name="OpretProdukt" value="OpretProdukt">Valgt opretmetode</button>
+
+
+}
+
+    <!-- Tilføj et skjult felt til at gemme den valgte produktType -->
+    @Html.Hidden("SelectedProductType", selectedProductType)
+
+<!-- Conditionally render fields for the 'Mad' type -->
+    @if(!string.IsNullOrEmpty(selectedProductType))
+    {
+    @using (Html.BeginForm("GemProdukt", "Home"))
+    {
+        
+    
+    @if (selectedProductType == "Mad")
+    {
+            <div class="form-group">
+                <label>Navn:</label>
+                @Html.TextBox("NavnFelt", null, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>Pris:</label>
+                @Html.TextBox("PrisFelt", null, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>Beskrivelse:</label>
+                @Html.TextArea("BeskrivelseFelt", null, new { @class = "form-controlArea" })
+            </div>
+
+            <div class="form-group">
+                <label>Udløbsdato:</label>
+                @Html.TextBox("UdlobsdatoFelt", null, new { type = "date", @class = "form-control" })
+            </div>
+
+            <div class="submit-button">
+                <button type="submit" name="GemProdukt">Gem Produkt</button>
+            </div>
+            @Html.Hidden("Produkters", selectedProductType)
+
+        } 
+        else if (selectedProductType == "NonFood")
+        {
+            <div class="form-group">
+                <label>Navn:</label>
+                @Html.TextBox("NavnFelt", null, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>Pris:</label>
+                @Html.TextBox("PrisFelt", null, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>Beskrivelse:</label>
+                @Html.TextArea("BeskrivelseFelt", null, new { @class = "form-controlArea" })
+            </div>
+
+            <div class="form-group">
+                <label>Udløbsdato:</label>
+                @Html.TextBox("UdlobsdatoFelt", null, new { type = "date", @class = "form-control" })
+            </div>
+
+            <div class="submit-button">
+                <button type="submit" name="GemProdukt">Gem Produkt</button>
+            </div>
+            @Html.Hidden("Produkters", selectedProductType)
+
+
+        }
+        else if (selectedProductType == "Spiritus")
+        {
+            <div class="form-group">
+                <label>Navn:</label>
+                @Html.TextBox("NavnFelt", null, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>Pris:</label>
+                @Html.TextBox("PrisFelt", null, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>Beskrivelse:</label>
+                @Html.TextArea("BeskrivelseFelt", null, new { @class = "form-controlArea" })
+            </div>
+
+            <div class="form-group">
+                <label>Udløbsdato:</label>
+                @Html.TextBox("UdlobsdatoFelt", null, new { type = "date", @class = "form-control" })
+            </div>
+
+            <div class="submit-button">
+                <button type="submit" name="GemProdukt">Gem Produkt</button>
+            </div>
+            @Html.Hidden("Produkters", selectedProductType)
+
+
+        }
+        else if (selectedProductType == "Vin")
+        {
+            <div class="form-group">
+                <label>Navn:</label>
+                @Html.TextBox("NavnFelt", null, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>Pris:</label>
+                @Html.TextBox("PrisFelt", null, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>Beskrivelse:</label>
+                @Html.TextArea("BeskrivelseFelt", null, new { @class = "form-controlArea" })
+            </div>
+
+            <div class="form-group">
+                <label>Udløbsdato:</label>
+                @Html.TextBox("UdlobsdatoFelt", null, new { type = "date", @class = "form-control" })
+            </div>
+
+            <div class="submit-button">
+                <button type="submit" name="GemProdukt">Gem Produkt</button>
+            </div>
+            @Html.Hidden("Produkters", selectedProductType)
+
+
+        }
+        else
+        {
+            <div class="form-group">
+                <label>Navn:</label>
+                @Html.TextBox("NavnFelt", null, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>Pris:</label>
+                @Html.TextBox("PrisFelt", null, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label>Beskrivelse:</label>
+                @Html.TextArea("BeskrivelseFelt", null, new { @class = "form-controlArea" })
+            </div>
+
+            <div class="form-group">
+                <label>Udløbsdato:</label>
+                @Html.TextBox("UdlobsdatoFelt", null, new { type = "date", @class = "form-control" })
+            </div>
+
+            <div class="submit-button">
+                <button type="submit" name="GemProdukt">Gem Produkt</button>
+            </div>
+
+            @Html.Hidden("Produkters", selectedProductType)
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+    }
+
+   
+    <style>
+        /*Justere størrelse af felter */
+    .form-control {
+        width: 200px; /**/
+        height: 20px;
+    }
+    /* Stil til form-gruppe, så label og input står side om side */
+    .form-group {
+        /*display flex
+          Regel der gør at div element klassen  .form-gruop fungere som et flex container 
+          Når element er flex container placeres det børn(label og input/textarea - felterne automatisk ved siden  af hinaden 
+
+          align items: center 
+          regel der justere børnene(label og input/texarea-felterne  ledret så de står centeret i fohold til hianden
+          når du bruger align-items: center på en flex-container, 
+          justerer det automatisk alle børneelementerne til midten på containerens lodrette akse
+
+          margin - top 15px
+          tilføjer  vertikal afstand (15px) oven over hvert .form-group element
+          Altså 15 pixels afstand mellem hver gruppe af feleterne 
+
+
+
+        */
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+    }
+
+    .form-controlArea {
+        width: 300px; /* Sætter bredden for textarea */
+        height: 100px; /* Sætter højden for textarea */
+    }
+
+    </style>
+
+    

@@ -23,6 +23,8 @@ namespace Data_Access.Context
 
             //optionsBuilder.UseSqlServer("Data Source=LAPTOP-CP8PKIBC\\SQLEXPRESS;Initial Catalog=Lagre;Integrated Security = SSPI; TrustServerCertificate=true");
             optionsBuilder.LogTo(message => Debug.WriteLine(message));
+            
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
