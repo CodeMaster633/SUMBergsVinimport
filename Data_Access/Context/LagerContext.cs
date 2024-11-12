@@ -41,7 +41,7 @@ namespace Data_Access.Context
         new Reol { ReolId = 3,  LagerId = 2 },
         new Reol { ReolId = 4,  LagerId = 2 },
         new Reol { ReolId = 5,  LagerId = 3 },
-        new Reol { ReolId = 6,  LagerId = 3 }
+        new Reol { ReolId = 6,  LagerId = 3 } });
             //Benytter TPT  Produkt er Basetype tabellen for de andre tabeller som nedarver
             //Klassen Produkt er lavet fordi man ikke kan bruger interface
             modelBuilder.Entity<Produkt>().ToTable("Produkt"); 
@@ -59,9 +59,9 @@ namespace Data_Access.Context
             .ValueGeneratedOnAdd(); // SQL Server genererer automatisk Id
 
             modelBuilder.Entity<Lager>().HasData(new Lager[] {
-                new Lager{Id=-1,Navn="Tilst Lager", Adresse="Tilst", Kontaktperson="Dennis"},
-                new Lager{Id=-2,Navn="Harlev Butik", Adresse="Harlev", Kontaktperson="Dennis" },
-                new Lager{Id=-3,Navn="Harlev Lager", Adresse="Harlev", Kontaktperson="Dennis"}
+                new Lager{LagerId=-1,Navn="Tilst Lager", Adresse="Tilst", Kontaktperson="Dennis"},
+                new Lager{LagerId=-2,Navn="Harlev Butik", Adresse="Harlev", Kontaktperson="Dennis" },
+                new Lager{LagerId=-3,Navn="Harlev Lager", Adresse="Harlev", Kontaktperson="Dennis"}
             });
 
             
