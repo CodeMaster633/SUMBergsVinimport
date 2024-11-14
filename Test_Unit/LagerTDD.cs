@@ -28,7 +28,6 @@ namespace Test_Unit
             List<LagerDTO> lagreListe = lagerBll.getLagre();
             LagerDTO lager2 = lagreListe[lagreListe.Count()-1];
 
-
             //Assert
             Assert.AreEqual(navn, lager2.Navn);
             Assert.AreEqual(adresse, lager2.Adresse);
