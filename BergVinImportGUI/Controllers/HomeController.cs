@@ -20,20 +20,24 @@ namespace BergVinImportGUI.Controllers
         {
             _logger = logger;
         }
-
         public IActionResult Index()
         {
-           
-            MadDTO mad = new MadDTO( 200, "Chokolade", "DEtte er lækkert chokolade", new DateTime(2025, 11, 10));
+
+            //MadDTO mad = new MadDTO( 200, "Chokolade", "DEtte er lækkert chokolade", new DateTime(2025, 11, 10));
             //SpiritusDTO sp = new SpiritusDTO( 100, "DRINKS", "DETTE ER LÆKKERT", 100.00, 20, 2020, DTO_.Enums.SpiritusType.Whiskey);
             //NonfoodDTO nonfoodDTO = new NonfoodDTO(200,"Glas","MEGET PÆNT GLAS");
             //lagerBll.OpretProdukt(mad);
             //lagerBll.OpretProdukt(nonfoodDTO);
             //lagerBll.OpretProdukt(sp);
             //ViewBag.Mad = lagerBll.GetMadProdukt(2).Navn;
+            List<IProdukt> produkter = lagerBll.GetAlleProdukt();
             lagerBll.getLager(1);
-            lagerBll.OpretProdukt(mad);
+            //lagerBll.OpretProdukt(mad);
+            ViewBag.Produkter = produkter;
+
+            // lagerBll.OpretProdukt(mad);
             ViewBag.Mad = lagerBll.GetMadProdukt(1).Navn;
+
             return View();
         }
 

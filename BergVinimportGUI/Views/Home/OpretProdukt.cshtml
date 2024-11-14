@@ -2,109 +2,90 @@
     string selectedProductType = ViewBag.SelectedPropertyType as string;
 }
 
-@using (Html.BeginForm("OpretProdukt", "Home"))
+<h2>Opret Produkt</h2>
+
+<!-- Form til at vælge produkt type -->
+@using (Html.BeginForm("OpretProdukt", "Home", FormMethod.Post, new { @class = "mb-4" }))
 {
-    @Html.DropDownList("Produkters", ViewBag.Produkters as List<SelectListItem>, "Vælg produkt")
-    <button type="submit" name="OpretProdukt" value="OpretProdukt">Valgt opretmetode</button>
+    <div class="mb-3">
+        @Html.Label("Produkters", "Vælg produkt", new { @class = "form-label" })
+        @Html.DropDownList("Produkters", ViewBag.Produkters as List<SelectListItem>, "Vælg produkt", new { @class = "form-select" })
+    </div>
+    <button type="submit" name="OpretProdukt" value="OpretProdukt" class="btn btn-primary">Valgt opretmetode</button>
 }
 
-    <!-- Tilføj et skjult felt til at gemme den valgte produktType -->
-    @Html.Hidden("SelectedProductType", selectedProductType)
+@Html.Hidden("SelectedProductType", selectedProductType)
 
-<!-- Conditionally render fields for the 'Mad' type -->
-
-    @if(!string.IsNullOrEmpty(selectedProductType))
+@if (!string.IsNullOrEmpty(selectedProductType))
+{
+    @using (Html.BeginForm("GemProdukt", "Home", FormMethod.Post, new { @class = "needs-validation", @novalidate = "true" }))
     {
-    @using (Html.BeginForm("GemProdukt", "Home"))
-    {
-        <div class="form-group">
-            <label>Navn:</label>
-            @Html.TextBox("NavnFelt", null, new { @class = "form-control" })
+        <div class="mb-3">
+            <label for="NavnFelt" class="form-label">Navn:</label>
+            @Html.TextBox("NavnFelt", null, new { @class = "form-control", @id = "NavnFelt", required = "required" })
         </div>
 
-        <div class="form-group">
-            <label>Pris:</label>
-            @Html.TextBox("PrisFelt", null, new { @class = "form-control" })
+        <div class="mb-3">
+            <label for="PrisFelt" class="form-label">Pris:</label>
+            @Html.TextBox("PrisFelt", null, new { @class = "form-control", @id = "PrisFelt", required = "required" })
         </div>
-    
-    @if (selectedProductType == "Mad" || selectedProductType == "Vin" || selectedProductType == "Øl")
-    {
-            <div class="form-group">
-                <label>Udløbsdato:</label>
-                @Html.TextBox("UdlobsdatoFelt", null, new { type = "date", @class = "form-control" })
+
+        @if (selectedProductType == "Mad" || selectedProductType == "Vin" || selectedProductType == "Øl")
+        {
+            <div class="mb-3">
+                <label for="UdlobsdatoFelt" class="form-label">Udløbsdato:</label>
+                @Html.TextBox("UdlobsdatoFelt", null, new { type = "date", @class = "form-control", @id = "UdlobsdatoFelt", required = "required" })
             </div>
 
-            if(selectedProductType == "Vin")
+            @if (selectedProductType == "Vin")
             {
-                <div class="form-group">
-                    <label>Antal Liter:</label>
-                    @Html.TextBox("LiterFelt", null, new { @class = "form-control" })
+                <div class="mb-3">
+                    <label for="LiterFelt" class="form-label">Antal Liter:</label>
+                    @Html.TextBox("LiterFelt", null, new { @class = "form-control", @id = "LiterFelt" })
                 </div>
-                @Html.DropDownList("VinType", ViewBag.VinType as List<SelectListItem>, "Vin type")
+                <div class="mb-3">
+                    <label for="VinType" class="form-label">Vin type:</label>
+                    @Html.DropDownList("VinType", ViewBag.VinType as List<SelectListItem>, "Vin type", new { @class = "form-select", @id = "VinType" })
+                </div>
             }
-        } 
+        }
         else if (selectedProductType == "Spiritus")
         {
-            <div class="form-group">
-                <label>Antal Liter:</label>
-                @Html.TextBox("LiterFelt", null, new { @class = "form-control" })
+            <div class="mb-3">
+                <label for="LiterFelt" class="form-label">Antal Liter:</label>
+                @Html.TextBox("LiterFelt", null, new { @class = "form-control", @id = "LiterFelt" })
             </div>
-            <div class="form-group">
-                <label>ProduktionsÅr:</label>
-                @Html.TextBox("ProÅrFelt", null, new { @class = "form-control" })
+            <div class="mb-3">
+                <label for="ProÅrFelt" class="form-label">ProduktionsÅr:</label>
+                @Html.TextBox("ProÅrFelt", null, new { @class = "form-control", @id = "ProÅrFelt" })
             </div>
-            <div class="form-group">
-                <label>Alkohol procent:</label>
-                @Html.TextBox("AlkProcentFelt", null, new { @class = "form-control" })
+            <div class="mb-3">
+                <label for="AlkProcentFelt" class="form-label">Alkohol procent:</label>
+                @Html.TextBox("AlkProcentFelt", null, new { @class = "form-control", @id = "AlkProcentFelt" })
             </div>
-
-            @Html.DropDownList("SpiritusType", ViewBag.SpiritusType as List<SelectListItem>, "Spiritus type")
-    }
-        else{}
-
-        <div class="form-group">
-            <label>Beskrivelse:</label>
-            @Html.TextArea("BeskrivelseFelt", null, new { @class = "form-controlArea" })
-        </div>
-
-        <div class="submit-button">
-            <button type="submit" name="GemProdukt">Gem Produkt</button>
-        </div>
-        @Html.Hidden("Produkters", selectedProductType)
+            <div class="mb-3">
+                <label for="SpiritusType" class="form-label">Spiritus type:</label>
+                @Html.DropDownList("SpiritusType", ViewBag.SpiritusType as List<SelectListItem>, "Spiritus type", new { @class = "form-select", @id = "SpiritusType" })
+            </div>
         }
+
+        <div class="mb-3">
+            <label for="BeskrivelseFelt" class="form-label">Beskrivelse:</label>
+            @Html.TextArea("BeskrivelseFelt", null, new { @class = "form-control", @id = "BeskrivelseFelt", rows = "4" })
+        </div>
+
+        <button type="submit" name="GemProdukt" class="btn btn-success">Gem Produkt</button>
+        @Html.Hidden("Produkters", selectedProductType)
+    }
+}
+
+<style>
+    /* Tilføjer responsivt layout med ens bredde på alle form-felter */
+    .form-control, .form-select {
+        max-width: 400px;
     }
 
-    <style>
-        /*Justere størrelse af felter */
-    .form-control {
-        width: 200px; /**/
-        height: 20px;
+    .form-label {
+        font-weight: bold;
     }
-    /* Stil til form-gruppe, så label og input står side om side */
-    .form-group {
-        /*display flex
-          Regel der gør at div element klassen  .form-gruop fungere som et flex container 
-          Når element er flex container placeres det børn(label og input/textarea - felterne automatisk ved siden  af hinaden 
-
-          align items: center 
-          regel der justere børnene(label og input/texarea-felterne  ledret så de står centeret i fohold til hianden
-          når du bruger align-items: center på en flex-container, 
-          justerer det automatisk alle børneelementerne til midten på containerens lodrette akse
-
-          margin - top 15px
-          tilføjer  vertikal afstand (15px) oven over hvert .form-group element
-          Altså 15 pixels afstand mellem hver gruppe af feleterne 
-        */
-        display: flex;
-        align-items: center;
-        margin-top: 15px;
-    }
-
-    .form-controlArea {
-        width: 300px; /* Sætter bredden for textarea */
-        height: 100px; /* Sætter højden for textarea */
-    }
-
-    </style>
-
-    
+</style>
