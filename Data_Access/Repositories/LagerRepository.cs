@@ -102,7 +102,7 @@ namespace Data_Access.Repositories
 
 
 
-        public static Lager getLager(int id)
+        public static LagerDTO getLager(int id)
         {
             using (LagerContext context = new LagerContext())
             {
@@ -110,14 +110,14 @@ namespace Data_Access.Repositories
                 return LagerMapper.Map(context.Lagre.Find(id));
             }
         }
-        public static List<Lager> getLagre()
+        public static List<LagerDTO> getLagre()
         {
             
                 using (LagerContext context = new LagerContext())
                 {
 
                     List<Model.Lager> lagre = context.Lagre.ToList();
-                    List<Lager> lagreDTO = lagre.Select(lager => LagerMapper.Map(lager)).ToList();
+                    List<LagerDTO> lagreDTO = lagre.Select(lager => LagerMapper.Map(lager)).ToList();
                 return lagreDTO;
                 }
          }
@@ -173,7 +173,7 @@ namespace Data_Access.Repositories
 			//}
 		}
 
-public static void AddLager(Lager lager)
+public static void AddLager(LagerDTO lager)
 {
 	using (LagerContext context = new LagerContext())
 	{
