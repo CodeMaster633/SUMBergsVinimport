@@ -1,5 +1,4 @@
-﻿using DTO_.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -26,6 +25,14 @@ namespace Data_Access.Model
         public string Navn { get; set; }
         public string Adresse { get; set; }
         public string Kontaktperson { get; set; }
-        public List<Reol> Reoler { get; set; }
+        public List<Reol> Reoler {get;set;}
+
+        public void Tilføj(Reol reol)
+        {
+            if (reol != null)
+            {
+                Reoler.Add(reol);
+            }
+        }
     }
 }

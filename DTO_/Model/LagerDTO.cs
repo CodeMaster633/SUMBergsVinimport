@@ -26,5 +26,13 @@ namespace DTO_.Model
         public string Adresse { get; set; }
         public string Kontaktperson { get; set; }
         public List<ReolDTO> Reoler {get;set;}
+
+        public void Tilføj(ReolDTO reolDTO)
+        {
+            if (reolDTO != null)
+            {
+                Reoler.Add(reolDTO);
+            }
+        }
     }
 }

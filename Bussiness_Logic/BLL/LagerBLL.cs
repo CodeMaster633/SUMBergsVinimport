@@ -101,8 +101,9 @@ namespace Business_Logic.BLL
 
 		}
 
-		public void TildelLagerReol(string lagerId, string reolId)
+		public void TildelLagerReol(LagerDTO lagerDTO, ReolDTO reolDTO)
 		{
+			LagerRepository.TildelLagerReol(lagerDTO,reolDTO);
 
 		}
 
