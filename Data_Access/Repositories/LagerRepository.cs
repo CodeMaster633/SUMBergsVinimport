@@ -148,8 +148,18 @@ namespace Data_Access.Repositories
 
 
 
+        public static void TildelLagerReol(LagerDTO lagerDTO, ReolDTO reolDTO)
+        {
+            using (LagerContext coontext = new LagerContext())
+            {
+                Lager lager = LagerMapper.Map(lagerDTO);
+                Reol reol = LagerMapper.r
 
-        public void TildelRelation(string parentId, string childId, DTO_.Model.ReltationType relationType)
+            }
+
+        }
+
+        public static void TildelRelation(string parentId, string childId, DTO_.Model.ReltationType relationType)
 		{
 			//     usning()
 			//switch (relationType)
