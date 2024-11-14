@@ -31,7 +31,14 @@ namespace BergVinImportGUI.Controllers
             //lagerBll.OpretProdukt(sp);
             //ViewBag.Mad = lagerBll.GetMadProdukt(2).Navn;
             lagerBll.getLager(1);
+            lagerBll.OpretProdukt(mad);
+            ViewBag.Mad = lagerBll.GetMadProdukt(1).Navn;
+            return View();
+        }
 
+        public IActionResult LagerIndex()
+        {
+            ViewBag.Lagre = lagerBll.getLagre();
             return View();
         }
 
@@ -150,8 +157,18 @@ namespace BergVinImportGUI.Controllers
 
 
 
-        public IActionResult Privacy()
+        //[HttpPost]
+        public ActionResult AddLager(IFormCollection formData)
         {
+            lagerBll.AddLager(new LagerDTO(formData["Navn"], formData["Adresse"], formData["Kontaktperson"]));
+            ViewBag.Lagre = lagerBll.getLagre();
+
+            return View("OpretLager");
+        }
+
+        public IActionResult OpretLager()
+        {
+            ViewBag.Lagre = lagerBll.getLagre();
             return View();
         }
 
@@ -161,4 +178,5 @@ namespace BergVinImportGUI.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
+
 }

@@ -19,10 +19,6 @@ namespace DTO_.Model
             Kontaktperson = kontaktperson;
             Reoler = new List<ReolDTO>();
 
-            //for (int i = 0; i < antalReoler; i++)
-            //{
-            //    Reoler.Add(new ReolDTO());
-            //}
         }
         [Key]
         public int LagerId { get; set; }
@@ -30,5 +26,13 @@ namespace DTO_.Model
         public string Adresse { get; set; }
         public string Kontaktperson { get; set; }
         public List<ReolDTO> Reoler {get;set;}
+
+        public void Tilføj(ReolDTO reolDTO)
+        {
+            if (reolDTO != null)
+            {
+                Reoler.Add(reolDTO);
+            }
+        }
     }
 }
