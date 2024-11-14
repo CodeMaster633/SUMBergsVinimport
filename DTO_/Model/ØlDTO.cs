@@ -9,13 +9,13 @@ namespace DTO_.Model
 	public class ØlDTO : IProdukt
 	{
 		public ØlDTO(){}
-		public ØlDTO( int pris, string navn, string beskrivelse, DateTime udløbsDato, double liter)
+		public ØlDTO( int pris, string navn, string beskrivelse, DateTime udloebsDato, double liter)
 		{
 		
 			Pris = pris;
 			Navn = navn;
 			Beskrivelse = beskrivelse;
-			Udløbsdato = udløbsDato;
+			Udloebsdato = udloebsDato;
 			Liter = liter;
 		}
 
@@ -23,7 +23,7 @@ namespace DTO_.Model
 		public int Pris { get; set; }
 		public string Navn { get; set; }
 		public string Beskrivelse { get; set; }
-		public DateTime Udløbsdato { get; set; }
+		public DateTime Udloebsdato { get; set; }
 		public double Liter { get; set; }
 }
 }

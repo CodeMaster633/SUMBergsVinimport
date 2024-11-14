@@ -31,7 +31,6 @@ namespace BergVinImportGUI.Controllers
             //lagerBll.OpretProdukt(sp);
             //ViewBag.Mad = lagerBll.GetMadProdukt(2).Navn;
             lagerBll.getLager(1);
-            MadDTO mad = new MadDTO(200, "Chokolade", "Dette er lækkert chokolade", new DateTime(2025, 11, 10));
             lagerBll.OpretProdukt(mad);
             ViewBag.Mad = lagerBll.GetMadProdukt(1).Navn;
             return View();
@@ -62,7 +61,7 @@ namespace BergVinImportGUI.Controllers
         {
             ViewBag.Produkters = new List<SelectListItem>
             {
-                  new SelectListItem { Text = "Mad", Value = "Mad" },
+                new SelectListItem { Text = "Mad", Value = "Mad" },
                 new SelectListItem { Text = "NonFood", Value = "NonFood" },
                 new SelectListItem { Text = "Spiritus", Value = "Spiritus" },
                 new SelectListItem { Text = "Vin", Value = "Vin" },
@@ -109,11 +108,11 @@ namespace BergVinImportGUI.Controllers
             IProdukt? produktDTO = null ;
             if (produktType == "Mad")
             {
-                string udløbsDatoString = formData["UdlobsdatoFelt"];
-                DateTime udløbsDato;
-                if (!DateTime.TryParse(udløbsDatoString, out udløbsDato))
+                string udloebsDatoString = formData["UdloebsdatoFelt"];
+                DateTime udloebsDato;
+                if (!DateTime.TryParse(udloebsDatoString, out udloebsDato))
                 {
-                    ModelState.AddModelError("UdlobsdatoFelt", "Ugyldig dato");
+                    ModelState.AddModelError("UdloebsdatoFelt", "Ugyldig dato");
                     return View("OpretProdukt");
                 }
                 produktDTO = new MadDTO()
@@ -121,7 +120,7 @@ namespace BergVinImportGUI.Controllers
                     Navn = navn,
                     Pris = pris,
                     Beskrivelse = beskrivelse,
-                    Udløbsdato = udløbsDato
+                    Udloebsdato = udloebsDato
 
                 };
             }
