@@ -31,7 +31,6 @@ namespace BergVinImportGUI.Controllers
             //lagerBll.OpretProdukt(sp);
             //ViewBag.Mad = lagerBll.GetMadProdukt(2).Navn;
             lagerBll.getLager(1);
-            MadDTO mad = new MadDTO(200, "Chokolade", "Dette er lækkert chokolade", new DateTime(2025, 11, 10));
             lagerBll.OpretProdukt(mad);
             ViewBag.Mad = lagerBll.GetMadProdukt(1).Navn;
             return View();
