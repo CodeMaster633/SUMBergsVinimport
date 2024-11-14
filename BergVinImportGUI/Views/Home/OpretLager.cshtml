@@ -3,27 +3,41 @@
 }
 <h1>@ViewData["Title"]</h1>
 
+<!-- Viser liste over nuværende lagre -->
 @using (Html.BeginForm("LagerIndex", "Home"))
 {
-    <p>Nuværende lagre: </p>
-    @Html.ListBox("LagreList", new SelectList(@ViewBag.Lagre, "Navn", "Navn"))
+    <p>Nuværende lagre:</p>
+    @Html.ListBox("LagreList", new SelectList(@ViewBag.Lagre, "Navn", "Navn"), new { @class = "form-select" })
     <br />
 }
 
+<!-- Formular til oprettelse af nyt lager -->
 @using (Html.BeginForm("AddLager", "Home", FormMethod.Post))
 {
     <p>Indtast oplysninger og tryk 'Opret'</p>
-    <br />
-    @Html.Label("Navn: ")
-    @Html.TextArea("Navn")
-
-    <br />
-    @Html.Label("Adresse: ")
-    @Html.TextArea("Adresse")
-
-    <br />
-    @Html.Label("Kontaktperson: ")
-    @Html.TextArea("Kontaktperson")
-
-    <button type="submit">Opret</button>
+    <div class="container">
+        <div class="row mb-3">
+            <label for="Navn" class="col-sm-2 col-form-label">Navn:</label>
+            <div class="col-sm-10">
+                @Html.TextArea("Navn", null, new { @class = "form-control", @id = "Navn", rows = 2 })
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="Adresse" class="col-sm-2 col-form-label">Adresse:</label>
+            <div class="col-sm-10">
+                @Html.TextArea("Adresse", null, new { @class = "form-control", @id = "Adresse", rows = 2 })
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="Kontaktperson" class="col-sm-2 col-form-label">Kontaktperson:</label>
+            <div class="col-sm-10">
+                @Html.TextArea("Kontaktperson", null, new { @class = "form-control", @id = "Kontaktperson", rows = 2 })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-10 offset-sm-2">
+                <button type="submit" class="btn btn-primary">Opret</button>
+            </div>
+        </div>
+    </div>
 }

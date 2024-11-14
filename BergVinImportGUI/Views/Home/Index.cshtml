@@ -1,13 +1,21 @@
-﻿@{
+﻿@using DTO_.Model
+@{
     @using (Html.BeginForm("Index", "Home"))
     {
-        <p>Mad: @ViewBag.Mad</p>
+
     }
 }
 
+<ol>
+    @foreach (IProdukt produkt in ViewBag.Produkter)
+    {
+            <li>@produkt.Navn</li>
+    }
+</ol>
+
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Lagerstyrings Systemet BVI</h1>
+    <p>Find ud af mere <a href="https://bergs-vinimport.dk/">Bergs VinImport</a>.</p>
 </div>
 
 @* @using (Html.BeginForm("OpretProdukt", "Home"))
