@@ -11,11 +11,12 @@ namespace Data_Access.Mappers
 {
     internal class LagerMapper
     {
-        public static Lager Map(Lager lager)
+        public static LagerDTO Map(Lager lager)
         {
             return new LagerDTO(lager.Navn, lager.Adresse, lager.Kontaktperson);
         }
-        public static Lager Map(Lager lager)
+
+        public static Lager Map(LagerDTO lager)
         {
             return new Lager( lager.Navn, lager.Adresse, lager.Kontaktperson);
         }
