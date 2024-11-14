@@ -14,13 +14,13 @@ namespace Data_Access.Context
             {
                 Debug.WriteLine("Database created");
             }
-
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-			optionsBuilder.UseSqlServer("Data Source=LAPTOP-TT7JTDJT\\SQLEXPRESS;Initial Catalog=Lagre;Integrated Security = SSPI; TrustServerCertificate=true");
-            //optionsBuilder.UseSqlServer("Data Source=LAPTOP-CP8PKIBC\\SQLEXPRESS;Initial Catalog=Lagre;Integrated Security=True; TrustServerCertificate=true");
-
+            //optionsBuilder.UseSqlServer("Data Source=LAPTOP-TT7JTDJT\\SQLEXPRESS;Initial Catalog=Lager;Integrated Security = SSPI; TrustServerCertificate=true");
+            //optionsBuilder.UseSqlServer("Data Source=LAPTOP-CP8PKIBC\\SQLEXPRESS;Initial Catalog=Lager;Integrated Security=True; TrustServerCertificate=true");
+            //optionsBuilder.UseSqlServer("Server=localhost,1433;Database=Lagre;User Id=sa;Password=reallyStrongPwd123;TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("Data Source=MRCARLSEN\\SQLEXPRESS;Initial Catalog=Lagre;Integrated Security = SSPI; TrustServerCertificate=true");
             optionsBuilder.LogTo(message => Debug.WriteLine(message));
             
 
@@ -37,12 +37,12 @@ namespace Data_Access.Context
 
             modelBuilder.Entity<Reol>().HasData(new Reol[]
             {
-        new Reol { ReolId = 1,  LagerId = 1 },
-        new Reol { ReolId = 2,  LagerId = 1 },
-        new Reol { ReolId = 3,  LagerId = 2 },
-        new Reol { ReolId = 4,  LagerId = 2 },
-        new Reol { ReolId = 5,  LagerId = 3 },
-        new Reol { ReolId = 6,  LagerId = 3 }
+                new Reol { ReolId = 1, LagerId = 1 },
+                new Reol { ReolId = 2, LagerId = 1 },
+                new Reol { ReolId = 3, LagerId = 2 },
+                new Reol { ReolId = 4, LagerId = 2 },
+                new Reol { ReolId = 5, LagerId = 3 },
+                new Reol { ReolId = 6, LagerId = 3 }
             });
             //Benytter TPT  Produkt er Basetype tabellen for de andre tabeller som nedarver
             //Klassen Produkt er lavet fordi man ikke kan bruger interface
@@ -60,7 +60,11 @@ namespace Data_Access.Context
             .Property(p => p.Id)
             .ValueGeneratedOnAdd(); // SQL Server genererer automatisk Id
 
-
+            modelBuilder.Entity<Lager>().HasData(new Lager[] {
+                new Lager{LagerId =-1,Navn="Tilst Lager", Adresse="Tilst", Kontaktperson="Dennis"},
+                new Lager{LagerId= -2,Navn="Harlev Butik", Adresse="Harlev", Kontaktperson="Dennis" },
+                new Lager{LagerId= -3,Navn="Harlev Lager", Adresse="Harlev", Kontaktperson="Dennis"}
+            });
 		}
         public DbSet<Lager> Lagre { get; set; }
         public DbSet<Produkt> Produkt { get; set; } 

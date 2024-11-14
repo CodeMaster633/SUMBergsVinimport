@@ -4,18 +4,18 @@ public class Øl : Produkt
 {
     public Øl() {}
 
-    public Øl(int id, int pris, string navn, string beskrivelse, DateTime udløbsdato, double liter)
+    public Øl(int id, int pris, string navn, string beskrivelse, DateTime udloebsdato, double liter)
     {
         Id = id;
         Pris = pris;
         Navn = navn;
         Beskrivelse = beskrivelse;
-        Udløbsdato = udløbsdato;
+        Udloebsdato = udloebsdato;
         Liter = liter;
     }
     
     
    
-    public DateTime Udløbsdato { get; set; }
+    public DateTime Udloebsdato { get; set; }
     public double Liter { get; set; }
 }

@@ -15,7 +15,7 @@ public class ProduktMapper
                 Pris = mad.Pris,
                 Navn = mad.Navn,
                 Beskrivelse = mad.Beskrivelse,
-                Udløbsdato = mad.Udløbsdato
+                Udloebsdato = mad.Udloebsdato
             };
         madDTO.Id = mad.Id;
         return madDTO;
@@ -30,7 +30,7 @@ public class ProduktMapper
                 Pris = madDto.Pris,
                 Navn = madDto.Navn,
                 Beskrivelse = madDto.Beskrivelse,
-                Udløbsdato = madDto.Udløbsdato
+                Udloebsdato = madDto.Udloebsdato
             };
         }
 
@@ -117,7 +117,7 @@ public class ProduktMapper
             Pris = ølDTO.Pris,
             Navn = ølDTO.Navn,
             Beskrivelse = ølDTO.Beskrivelse,
-            Udløbsdato = ølDTO.Udløbsdato,
+            Udloebsdato = ølDTO.Udloebsdato,
             Liter = ølDTO.Liter
         };
         
@@ -130,7 +130,7 @@ public class ProduktMapper
             Pris = øl.Pris,
             Navn = øl.Navn,
             Beskrivelse = øl.Beskrivelse,
-            Udløbsdato = øl.Udløbsdato,
+            Udloebsdato = øl.Udloebsdato,
             Liter = øl.Liter
         };
 

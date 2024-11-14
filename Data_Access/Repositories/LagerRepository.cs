@@ -153,7 +153,7 @@ namespace Data_Access.Repositories
             using (LagerContext coontext = new LagerContext())
             {
                 Lager lager = LagerMapper.Map(lagerDTO);
-                Reol reol = LagerMapper.r
+               // Reol reol = LagerMapper.r
 
             }
 

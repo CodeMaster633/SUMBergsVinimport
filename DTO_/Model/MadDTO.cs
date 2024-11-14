@@ -6,18 +6,18 @@ public class MadDTO : IProdukt
     {
     }
 
-    public MadDTO( int pris, string navn, string beskrivelse, DateTime udløbsdato)
+    public MadDTO( int pris, string navn, string beskrivelse, DateTime udloebsdato)
     {
        
         Pris = pris;
         Navn = navn;
         Beskrivelse = beskrivelse;
-        Udløbsdato = udløbsdato;
+        Udloebsdato = udloebsdato;
     }
 
     public int Id { get; set; }
     public int Pris { get; set; }
     public string Navn { get; set; }
     public string Beskrivelse { get; set; }
-    public DateTime Udløbsdato { get; set; }
+    public DateTime Udloebsdato { get; set; }
 }

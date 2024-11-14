@@ -4,15 +4,15 @@ public class Mad : Produkt
 {
 	public Mad() { }
 
-	public Mad(int id, int pris, string navn, string beskrivelse, DateTime udløbsdato)
+	public Mad(int id, int pris, string navn, string beskrivelse, DateTime udloebsdato)
 	{
 		Id = id;
 		Pris = pris;
 		Navn = navn;
 		Beskrivelse = beskrivelse;
-		Udløbsdato = udløbsdato;
+		Udloebsdato = udloebsdato;
 	}
 
-	public DateTime Udløbsdato { get; set; }
+	public DateTime Udloebsdato { get; set; }
 
 }

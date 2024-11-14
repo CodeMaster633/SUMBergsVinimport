@@ -6,182 +6,74 @@
 {
     @Html.DropDownList("Produkters", ViewBag.Produkters as List<SelectListItem>, "Vælg produkt")
     <button type="submit" name="OpretProdukt" value="OpretProdukt">Valgt opretmetode</button>
-
-
 }
 
     <!-- Tilføj et skjult felt til at gemme den valgte produktType -->
     @Html.Hidden("SelectedProductType", selectedProductType)
 
 <!-- Conditionally render fields for the 'Mad' type -->
+
     @if(!string.IsNullOrEmpty(selectedProductType))
     {
     @using (Html.BeginForm("GemProdukt", "Home"))
     {
-        
+        <div class="form-group">
+            <label>Navn:</label>
+            @Html.TextBox("NavnFelt", null, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            <label>Pris:</label>
+            @Html.TextBox("PrisFelt", null, new { @class = "form-control" })
+        </div>
     
-    @if (selectedProductType == "Mad")
+    @if (selectedProductType == "Mad" || selectedProductType == "Vin" || selectedProductType == "Øl")
     {
             <div class="form-group">
-                <label>Navn:</label>
-                @Html.TextBox("NavnFelt", null, new { @class = "form-control" })
-            </div>
-
-            <div class="form-group">
-                <label>Pris:</label>
-                @Html.TextBox("PrisFelt", null, new { @class = "form-control" })
-            </div>
-
-            <div class="form-group">
-                <label>Beskrivelse:</label>
-                @Html.TextArea("BeskrivelseFelt", null, new { @class = "form-controlArea" })
-            </div>
-
-            <div class="form-group">
                 <label>Udløbsdato:</label>
                 @Html.TextBox("UdlobsdatoFelt", null, new { type = "date", @class = "form-control" })
             </div>
 
-            <div class="submit-button">
-                <button type="submit" name="GemProdukt">Gem Produkt</button>
-            </div>
-            @Html.Hidden("Produkters", selectedProductType)
-
+            if(selectedProductType == "Vin")
+            {
+                <div class="form-group">
+                    <label>Antal Liter:</label>
+                    @Html.TextBox("LiterFelt", null, new { @class = "form-control" })
+                </div>
+                @Html.DropDownList("VinType", ViewBag.VinType as List<SelectListItem>, "Vin type")
+            }
         } 
-        else if (selectedProductType == "NonFood")
-        {
-            <div class="form-group">
-                <label>Navn:</label>
-                @Html.TextBox("NavnFelt", null, new { @class = "form-control" })
-            </div>
-
-            <div class="form-group">
-                <label>Pris:</label>
-                @Html.TextBox("PrisFelt", null, new { @class = "form-control" })
-            </div>
-
-            <div class="form-group">
-                <label>Beskrivelse:</label>
-                @Html.TextArea("BeskrivelseFelt", null, new { @class = "form-controlArea" })
-            </div>
-
-            <div class="form-group">
-                <label>Udløbsdato:</label>
-                @Html.TextBox("UdlobsdatoFelt", null, new { type = "date", @class = "form-control" })
-            </div>
-
-            <div class="submit-button">
-                <button type="submit" name="GemProdukt">Gem Produkt</button>
-            </div>
-            @Html.Hidden("Produkters", selectedProductType)
-
-
-        }
         else if (selectedProductType == "Spiritus")
         {
             <div class="form-group">
-                <label>Navn:</label>
-                @Html.TextBox("NavnFelt", null, new { @class = "form-control" })
+                <label>Antal Liter:</label>
+                @Html.TextBox("LiterFelt", null, new { @class = "form-control" })
             </div>
-
             <div class="form-group">
-                <label>Pris:</label>
-                @Html.TextBox("PrisFelt", null, new { @class = "form-control" })
+                <label>ProduktionsÅr:</label>
+                @Html.TextBox("ProÅrFelt", null, new { @class = "form-control" })
             </div>
-
             <div class="form-group">
-                <label>Beskrivelse:</label>
-                @Html.TextArea("BeskrivelseFelt", null, new { @class = "form-controlArea" })
+                <label>Alkohol procent:</label>
+                @Html.TextBox("AlkProcentFelt", null, new { @class = "form-control" })
             </div>
 
-            <div class="form-group">
-                <label>Udløbsdato:</label>
-                @Html.TextBox("UdlobsdatoFelt", null, new { type = "date", @class = "form-control" })
-            </div>
+            @Html.DropDownList("SpiritusType", ViewBag.SpiritusType as List<SelectListItem>, "Spiritus type")
+    }
+        else{}
 
-            <div class="submit-button">
-                <button type="submit" name="GemProdukt">Gem Produkt</button>
-            </div>
-            @Html.Hidden("Produkters", selectedProductType)
+        <div class="form-group">
+            <label>Beskrivelse:</label>
+            @Html.TextArea("BeskrivelseFelt", null, new { @class = "form-controlArea" })
+        </div>
 
-
+        <div class="submit-button">
+            <button type="submit" name="GemProdukt">Gem Produkt</button>
+        </div>
+        @Html.Hidden("Produkters", selectedProductType)
         }
-        else if (selectedProductType == "Vin")
-        {
-            <div class="form-group">
-                <label>Navn:</label>
-                @Html.TextBox("NavnFelt", null, new { @class = "form-control" })
-            </div>
-
-            <div class="form-group">
-                <label>Pris:</label>
-                @Html.TextBox("PrisFelt", null, new { @class = "form-control" })
-            </div>
-
-            <div class="form-group">
-                <label>Beskrivelse:</label>
-                @Html.TextArea("BeskrivelseFelt", null, new { @class = "form-controlArea" })
-            </div>
-
-            <div class="form-group">
-                <label>Udløbsdato:</label>
-                @Html.TextBox("UdlobsdatoFelt", null, new { type = "date", @class = "form-control" })
-            </div>
-
-            <div class="submit-button">
-                <button type="submit" name="GemProdukt">Gem Produkt</button>
-            </div>
-            @Html.Hidden("Produkters", selectedProductType)
-
-
-        }
-        else
-        {
-            <div class="form-group">
-                <label>Navn:</label>
-                @Html.TextBox("NavnFelt", null, new { @class = "form-control" })
-            </div>
-
-            <div class="form-group">
-                <label>Pris:</label>
-                @Html.TextBox("PrisFelt", null, new { @class = "form-control" })
-            </div>
-
-            <div class="form-group">
-                <label>Beskrivelse:</label>
-                @Html.TextArea("BeskrivelseFelt", null, new { @class = "form-controlArea" })
-            </div>
-
-            <div class="form-group">
-                <label>Udløbsdato:</label>
-                @Html.TextBox("UdlobsdatoFelt", null, new { type = "date", @class = "form-control" })
-            </div>
-
-            <div class="submit-button">
-                <button type="submit" name="GemProdukt">Gem Produkt</button>
-            </div>
-
-            @Html.Hidden("Produkters", selectedProductType)
-
-
-        }
-
-
-
-
-
-
-
-
-
-
-}
-
-
-
     }
 
-   
     <style>
         /*Justere størrelse af felter */
     .form-control {
@@ -202,9 +94,6 @@
           margin - top 15px
           tilføjer  vertikal afstand (15px) oven over hvert .form-group element
           Altså 15 pixels afstand mellem hver gruppe af feleterne 
-
-
-
         */
         display: flex;
         align-items: center;
