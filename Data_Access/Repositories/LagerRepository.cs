@@ -141,6 +141,8 @@ namespace Data_Access.Repositories
                 alleProdukter.AddRange(vinProdukter);
                 alleProdukter.AddRange(nonFoddProdukter);
                 alleProdukter.AddRange(ølProdukter);
+
+
                 return alleProdukter;   
            }
 
@@ -150,10 +152,27 @@ namespace Data_Access.Repositories
 
         public static void TildelLagerReol(LagerDTO lagerDTO, ReolDTO reolDTO)
         {
-            using (LagerContext coontext = new LagerContext())
+            
+            using (LagerContext context = new LagerContext())
             {
-                Lager lager = LagerMapper.Map(lagerDTO);
-               // Reol reol = LagerMapper.r
+               Lager lager = context.Lagre.FirstOrDefault(l=>l.LagerId == lagerDTO.LagerId);
+               Reol reol = context;
+
+                if(lager == null)
+                {
+                    throw new Exception("Lager ikke fundet i databasen");
+                }
+
+                if(reol == null)
+                {
+                    throw new Exception("Reol ikke fundet i databasen");
+                }
+                //Tildeler foreign key til reol
+                reol.LagerId = lager.LagerId;
+
+                context.SaveChanges();
+
+                   
 
             }
 

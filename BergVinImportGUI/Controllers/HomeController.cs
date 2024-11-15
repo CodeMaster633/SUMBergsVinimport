@@ -36,7 +36,7 @@ namespace BergVinImportGUI.Controllers
             ViewBag.Produkter = produkter;
 
             // lagerBll.OpretProdukt(mad);
-            ViewBag.Mad = lagerBll.GetMadProdukt(1).Navn;
+            //ViewBag.Mad = lagerBll.GetMadProdukt(1).Navn;
 
             return View();
         }
