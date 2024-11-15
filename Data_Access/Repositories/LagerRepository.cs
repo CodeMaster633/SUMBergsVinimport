@@ -25,22 +25,26 @@ namespace Data_Access.Repositories
                     madDTO.Id = 0;
                     Model.Mad mad = ProduktMapper.MapTilMadEntity(madDTO);
                     context.Mad.Add(mad);
-                }else if(produkt is DTO_.Model.SpiritusDTO spiritusDTO)
+                }
+                else if (produkt is DTO_.Model.SpiritusDTO spiritusDTO)
                 {
                     spiritusDTO.Id = 0;
                     Model.Spiritus spiritus = ProduktMapper.MapTilSpiritusEntity(spiritusDTO);
                     context.Spiritus.Add(spiritus);
-                }else if(produkt is DTO_.Model.NonfoodDTO nonfoodDTO)
+                }
+                else if (produkt is DTO_.Model.NonfoodDTO nonfoodDTO)
                 {
                     nonfoodDTO.Id = 0;
                     Model.Nonfood nonfood = ProduktMapper.MaptilNonFoodEntity(nonfoodDTO);
-                    context.Nonfoods.Add(nonfood);   
-                }else if( produkt is DTO_.Model.VinDTO vinDTO)
+                    context.Nonfoods.Add(nonfood);
+                }
+                else if (produkt is DTO_.Model.VinDTO vinDTO)
                 {
                     vinDTO.Id = 0;
                     Model.Vin vin = ProduktMapper.MapTilVinEntity(vinDTO);
                     context.Vin.Add(vin);
-                }else if(produkt is  DTO_.Model.ØlDTO ølDTO)
+                }
+                else if (produkt is DTO_.Model.ØlDTO ølDTO)
                 {
                     ølDTO.Id = 0;
                     Model.Øl øl = ProduktMapper.MapØlTilEntity(ølDTO);
@@ -64,7 +68,7 @@ namespace Data_Access.Repositories
 
         public static ØlDTO GetØlById(int id)
         {
-            using(LagerContext context = new LagerContext())
+            using (LagerContext context = new LagerContext())
             {
                 Øl øl = context.Øls.Find(id);
                 return øl != null ? ProduktMapper.MapØlTilDTO(øl) : null;
@@ -72,17 +76,17 @@ namespace Data_Access.Repositories
         }
 
         public static VinDTO GetVinById(int id)
-        { 
-            using(LagerContext context = new LagerContext())
+        {
+            using (LagerContext context = new LagerContext())
             {
                 Vin vin = context.Vin.Find(id);
                 return vin != null ? ProduktMapper.MapVinTilDTO(vin) : null;
             }
         }
 
-        public static SpiritusDTO GetSpiritusDTO(int id) 
-        { 
-            using(LagerContext context = new LagerContext())
+        public static SpiritusDTO GetSpiritusDTO(int id)
+        {
+            using (LagerContext context = new LagerContext())
             {
                 Spiritus spiritus = context.Spiritus.Find(id);
                 return spiritus != null ? ProduktMapper.MapTilSpiritusDTO(spiritus) : null;
@@ -112,27 +116,27 @@ namespace Data_Access.Repositories
         }
         public static List<LagerDTO> getLagre()
         {
-            
-                using (LagerContext context = new LagerContext())
-                {
 
-                    List<Model.Lager> lagre = context.Lagre.ToList();
-                    List<LagerDTO> lagreDTO = lagre.Select(lager => LagerMapper.Map(lager)).ToList();
+            using (LagerContext context = new LagerContext())
+            {
+
+                List<Model.Lager> lagre = context.Lagre.ToList();
+                List<LagerDTO> lagreDTO = lagre.Select(lager => LagerMapper.Map(lager)).ToList();
                 return lagreDTO;
-                }
-         }
+            }
+        }
 
 
         public static List<DTO_.Model.IProdukt> GetAlleProdukter()
         {
-           using (LagerContext context = new LagerContext())
-           {
+            using (LagerContext context = new LagerContext())
+            {
                 //Man kan bruge entity framework til at samle  ale produktyper i  en list 
-                List<MadDTO>madProdukter = context.Mad.Select(m=> ProduktMapper.MapTilMadDTO(m)).ToList();
-                List<VinDTO> vinProdukter = context.Vin.Select(v=> ProduktMapper.MapVinTilDTO(v)).ToList();
-                List<ØlDTO> ølProdukter = context.Øls.Select(o=> ProduktMapper.MapØlTilDTO(o)).ToList();
-                List<NonfoodDTO> nonFoddProdukter = context.Nonfoods.Select(nF=> ProduktMapper.MapTilNonfoodDTO(nF)).ToList();  
-                List<SpiritusDTO> spiritusProdukter = context.Spiritus.Select(s=> ProduktMapper.MapTilSpiritusDTO(s)).ToList();
+                List<MadDTO> madProdukter = context.Mad.Select(m => ProduktMapper.MapTilMadDTO(m)).ToList();
+                List<VinDTO> vinProdukter = context.Vin.Select(v => ProduktMapper.MapVinTilDTO(v)).ToList();
+                List<ØlDTO> ølProdukter = context.Øls.Select(o => ProduktMapper.MapØlTilDTO(o)).ToList();
+                List<NonfoodDTO> nonFoddProdukter = context.Nonfoods.Select(nF => ProduktMapper.MapTilNonfoodDTO(nF)).ToList();
+                List<SpiritusDTO> spiritusProdukter = context.Spiritus.Select(s => ProduktMapper.MapTilSpiritusDTO(s)).ToList();
 
                 //Kombinere alle samlinger en samlet liste for Iprodukter
                 List<DTO_.Model.IProdukt> alleProdukter = new List<DTO_.Model.IProdukt>();
@@ -141,8 +145,8 @@ namespace Data_Access.Repositories
                 alleProdukter.AddRange(vinProdukter);
                 alleProdukter.AddRange(nonFoddProdukter);
                 alleProdukter.AddRange(ølProdukter);
-                return alleProdukter;   
-           }
+                return alleProdukter;
+            }
 
         }
 
@@ -153,37 +157,45 @@ namespace Data_Access.Repositories
             using (LagerContext coontext = new LagerContext())
             {
                 Lager lager = LagerMapper.Map(lagerDTO);
-               // Reol reol = LagerMapper.r
+                // Reol reol = LagerMapper.r
 
             }
 
         }
 
         public static void TildelRelation(string parentId, string childId, DTO_.Model.ReltationType relationType)
-		{
-			//     usning()
-			//switch (relationType)
-			//{
-			//	case ReltationType.LagerTilReol:
-			//		var lager = _context.Lagere.Find(parentId);
-			//		var reol = _context.Reoler.Find(childId);
-			//		if (lager == null || reol == null) throw new Exception("Lager eller Reol ikke fundet.");
-			//		reol.LagerId = parentId;
-			//		break;
-			//}
-		}
+        {
+            //     usning()
+            //switch (relationType)
+            //{
+            //	case ReltationType.LagerTilReol:
+            //		var lager = _context.Lagere.Find(parentId);
+            //		var reol = _context.Reoler.Find(childId);
+            //		if (lager == null || reol == null) throw new Exception("Lager eller Reol ikke fundet.");
+            //		reol.LagerId = parentId;
+            //		break;
+            //}
+        }
 
-public static void AddLager(LagerDTO lager)
-{
-	using (LagerContext context = new LagerContext())
-	{
-		Data_Access.Model.Lager lag = LagerMapper.Map(lager);
-		context.Lagre.Add(lag);
-		context.SaveChanges();
-	}
+        public static void AddLager(LagerDTO lager)
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                Data_Access.Model.Lager lag = LagerMapper.Map(lager);
+                context.Lagre.Add(lag);
+                context.SaveChanges();
+            }
+        }
+
+        public static void OpretReol(int antalHylder, int antalPladserPrHylde, LagerDTO lager)
+        {
+            using (LagerContext context = new LagerContext())
+            {
+
+            }
+        }
+    }
 }
-}
-	}
 
 
 

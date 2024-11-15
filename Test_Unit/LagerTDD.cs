@@ -69,7 +69,7 @@ namespace Test_Unit
 
 
             //Assert
-            Assert.IsNull(lager2.Reoler);
+            Assert.AreEqual(lager2.Reoler.Count(),0);
         }
     }
 }

@@ -74,14 +74,17 @@ namespace Business_Logic.BLL
             LagerRepository.AddLager(lager);
         }
 
-        //public MadDTO GetProdukt(int produktId)
-        //{
-        //	return LagerRepository.GetMadById(produktId);
+		//public MadDTO GetProdukt(int produktId)
+		//{
+		//	return LagerRepository.GetMadById(produktId);
 
-        //}
+		//}
 
 
+		public void OpretReol(int antalHylder, int antalPladserPrHylde, LagerDTO lager) {
+			LagerRepository.OpretReol(antalHylder, antalPladserPrHylde, lager);
 
+        }
 
 
         //Tildeling af lokation funktion
