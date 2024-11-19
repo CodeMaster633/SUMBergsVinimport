@@ -17,7 +17,7 @@ namespace Data_Access.Model
             Navn = navn;
             Adresse = adresse;
             Kontaktperson = kontaktperson;
-            Reoler = new List<Reol>();
+            Produkter = new List<Produkt>();
 
         }
         [Key]
@@ -25,14 +25,8 @@ namespace Data_Access.Model
         public string Navn { get; set; }
         public string Adresse { get; set; }
         public string Kontaktperson { get; set; }
-        public List<Reol> Reoler {get;set;}
+        public List<Produkt> Produkter {get;set;}
 
-        public void Tilføj(Reol reol)
-        {
-            if (reol != null)
-            {
-                Reoler.Add(reol);
-            }
-        }
+       
     }
 }

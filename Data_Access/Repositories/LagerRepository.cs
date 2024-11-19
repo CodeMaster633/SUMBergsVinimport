@@ -152,9 +152,6 @@ namespace Data_Access.Repositories
 
         }
 
-
-
-
         //public static void TildelLagerReol(LagerDTO lagerDTO, ReolDTO reolDTO)
         //{
             
@@ -206,8 +203,6 @@ namespace Data_Access.Repositories
                 context.SaveChanges();
             }
         }
-
-
         public static void OpretReol(int antalHylder, int antalPladserPrHylde, LagerDTO lager)
         {
             using (LagerContext context = new LagerContext())
@@ -265,9 +260,6 @@ namespace Data_Access.Repositories
                 }
             }
         }
-
-
- 
     }
 }
 

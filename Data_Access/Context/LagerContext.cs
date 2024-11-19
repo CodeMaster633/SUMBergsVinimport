@@ -18,8 +18,8 @@ namespace Data_Access.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Data Source=LAPTOP-TT7JTDJT\\SQLEXPRESS;Initial Catalog=Lagre;Integrated Security = SSPI; TrustServerCertificate=true");
-            optionsBuilder.UseSqlServer("Data Source=LAPTOP-CP8PKIBC\\SQLEXPRESS;Initial Catalog=Lager;Integrated Security=True; TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("Data Source=LAPTOP-TT7JTDJT\\SQLEXPRESS;Initial Catalog=Lagre;Integrated Security = SSPI; TrustServerCertificate=true");
+            //optionsBuilder.UseSqlServer("Data Source=LAPTOP-CP8PKIBC\\SQLEXPRESS;Initial Catalog=Lager;Integrated Security=True; TrustServerCertificate=true");
             //optionsBuilder.UseSqlServer("Server=localhost,1433;Database=Lagre;User Id=sa;Password=reallyStrongPwd123;TrustServerCertificate=true");
             //optionsBuilder.UseSqlServer("Data Source=MRCARLSEN\\SQLEXPRESS;Initial Catalog=Lagre;Integrated Security = SSPI; TrustServerCertificate=true");
             optionsBuilder.LogTo(message => Debug.WriteLine(message));
@@ -58,40 +58,6 @@ namespace Data_Access.Context
                 new Lager { LagerId = 3, Navn = "Harlev Lager", Adresse = "Harlev", Kontaktperson = "Dennis" }
             });
 
-
-            
-
-            modelBuilder.Entity<Reol>().HasData(new Reol[]
-            {
-                new Reol { ReolId = 1, LagerId = 1 },
-                new Reol { ReolId = 2, LagerId = 1 },
-                new Reol { ReolId = 3, LagerId = 2 },
-                new Reol { ReolId = 4, LagerId = 2 },
-                new Reol { ReolId = 5, LagerId = 3 },
-                new Reol { ReolId = 6, LagerId = 3 }
-            });
-
-            modelBuilder.Entity<Hylde>().HasData(new Hylde[]
-            {
-                new Hylde { HyldeId = 1, ReolId = 1 },
-                new Hylde { HyldeId = 2, ReolId = 1 },
-                new Hylde { HyldeId = 3, ReolId = 2 },
-                new Hylde { HyldeId = 4, ReolId = 2 },
-                new Hylde { HyldeId = 5, ReolId = 3 },
-                new Hylde { HyldeId = 6, ReolId = 3},
-
-            });
-
-            modelBuilder.Entity<Plads>().HasData(new Plads[]
-            {
-                new Plads { PladsId = 1, HyldeId = 1 },
-                new Plads { PladsId = 2, HyldeId = 1 },
-                new Plads { PladsId = 3, HyldeId = 2 },
-                new Plads { PladsId = 4, HyldeId = 2 },
-                new Plads { PladsId = 5, HyldeId = 3 },
-                new Plads { PladsId = 6, HyldeId = 3 },
-                
-            });
 
 
             //Benytter TPT  Produkt er Basetype tabellen for de andre tabeller som nedarver

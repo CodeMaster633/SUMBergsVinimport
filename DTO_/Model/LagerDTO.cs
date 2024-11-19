@@ -17,7 +17,7 @@ namespace DTO_.Model
             Navn = navn;
             Adresse = adresse;
             Kontaktperson = kontaktperson;
-            Reoler = new List<ReolDTO>();
+            Produkter = new List<IProdukt>();
 
         }
         [Key]
@@ -25,14 +25,7 @@ namespace DTO_.Model
         public string Navn { get; set; }
         public string Adresse { get; set; }
         public string Kontaktperson { get; set; }
-        public List<ReolDTO> Reoler {get;set;}
+        public List<IProdukt> Produkter {get;set;}
 
-        public void Tilføj(ReolDTO reolDTO)
-        {
-            if (reolDTO != null)
-            {
-                Reoler.Add(reolDTO);
-            }
-        }
     }
 }
