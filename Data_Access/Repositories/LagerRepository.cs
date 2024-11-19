@@ -154,33 +154,33 @@ namespace Data_Access.Repositories
 
 
 
-        public static void TildelLagerReol(LagerDTO lagerDTO, ReolDTO reolDTO)
-        {
+        //public static void TildelLagerReol(LagerDTO lagerDTO, ReolDTO reolDTO)
+        //{
             
-            using (LagerContext context = new LagerContext())
-            {
-               Lager lager = context.Lagre.FirstOrDefault(l=>l.LagerId == lagerDTO.LagerId);
-               Reol reol = context;
+        //    using (LagerContext context = new LagerContext())
+        //    {
+        //       Lager lager = context.Lagre.FirstOrDefault(l=>l.LagerId == lagerDTO.LagerId);
+        //       Reol reol = context;   
 
-                if(lager == null)
-                {
-                    throw new Exception("Lager ikke fundet i databasen");
-                }
+        //        if(lager == null)
+        //        {
+        //            throw new Exception("Lager ikke fundet i databasen");
+        //        }
 
-                if(reol == null)
-                {
-                    throw new Exception("Reol ikke fundet i databasen");
-                }
-                //Tildeler foreign key til reol
-                reol.LagerId = lager.LagerId;
+        //        if(reol == null)
+        //        {
+        //            throw new Exception("Reol ikke fundet i databasen");
+        //        }
+        //        //Tildeler foreign key til reol
+        //        reol.LagerId = lager.LagerId;
 
-                context.SaveChanges();
+        //        context.SaveChanges();
 
                    
 
-            }
+        //    }
 
-        }
+        //}
 
         public static void TildelRelation(string parentId, string childId, DTO_.Model.ReltationType relationType)
         {
@@ -213,8 +213,62 @@ namespace Data_Access.Repositories
 
             }
         }
+
+
+
+        public static DTO_.Model.IProdukt GetProdukt(int id)
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                Model.IProdukt produkt = context.Produkt.FirstOrDefault(p => p.Id == id);
+                if (produkt == null)
+                {
+                    throw new Exception("Produktet  er ikke i databasen");
+                }
+
+                return produkt switch
+                {
+                    Mad mad => ProduktMapper.MapTilMadDTO(mad),
+                    Vin vin => ProduktMapper.MapVinTilDTO(vin),
+                    Nonfood nonfood => ProduktMapper.MapTilNonfoodDTO(nonfood), 
+                    Øl øl => ProduktMapper.MapØlTilDTO(øl),
+                    Spiritus spiritus => ProduktMapper.MapTilSpiritusDTO(spiritus),
+
+
+                };
+              
+                //DTO_.Model.IProdukt produktDTO = (DTO_.Model.IProdukt)(typeof(ProduktMapper).GetMethods().
+                //   FirstOrDefault(m => m.Name.StartsWith("Map") && m.Name.EndsWith("DTO")
+                //   && m.GetParameters().Length == 1
+                //   && m.GetParameters().First().ParameterType == produkt.GetType())
+                //   ).Invoke(null, new object[] { produkt });
+
+
+               
+
+
+               
+            }
+        }
+
+        public static void FjernProdukt(int id)
+        {
+          using(LagerContext context = new LagerContext())
+            {
+                Model.IProdukt produktRemoved = context.Produkt.FirstOrDefault(p=>p.Id == id);   
+                if(produktRemoved != null)
+                {
+                    context.Produkt.Remove((Produkt)produktRemoved);
+                    context.SaveChanges();  
+                }
+            }
+        }
+
+
+ 
     }
 }
+
 
 
 

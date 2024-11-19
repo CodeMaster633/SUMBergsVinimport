@@ -74,14 +74,17 @@ namespace Business_Logic.BLL
             LagerRepository.AddLager(lager);
         }
 
-        //public MadDTO GetProdukt(int produktId)
-        //{
-        //	return LagerRepository.GetMadById(produktId);
+		//public MadDTO GetProdukt(int produktId)
+		//{
+		//	return LagerRepository.GetMadById(produktId);
 
-        //}
+		//}
 
 
-
+		public void OpretReol(int antalHylder, int antalPladserPrHylde, LagerDTO lager) {
+			LagerRepository.OpretReol(antalHylder, antalPladserPrHylde, lager);
+		
+        }
 
 
         //Tildeling af lokation funktion
@@ -103,10 +106,19 @@ namespace Business_Logic.BLL
 
 		public void TildelLagerReol(LagerDTO lagerDTO, ReolDTO reolDTO)
 		{
-			LagerRepository.TildelLagerReol(lagerDTO,reolDTO);
+			//LagerRepository.TildelLagerReol(lagerDTO,reolDTO);
 
 		}
 
+		public void FjernProdukt(int Id)
+		{
+			LagerRepository.FjernProdukt(Id);
+		}
+
+		public IProdukt GetProdukt(int id)
+		{
+			return LagerRepository.GetProdukt(id);
+		}
 
 
 		public void TildelRelation(string parentId, string childId, ReltationType relationType)

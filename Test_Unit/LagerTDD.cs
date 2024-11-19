@@ -34,7 +34,7 @@ namespace Test_Unit
             Assert.AreEqual(kontaktperson, lager2.Kontaktperson);
 
         }
-
+        [Test]
         public void TilføjReol()
         {
             //Arrange
@@ -53,6 +53,7 @@ namespace Test_Unit
             //Assert
             Assert.NotNull(lager2.Reoler);
         }
+        [Test]
         public void TilføjReolNull()
         {
             //Arrange
@@ -68,7 +69,7 @@ namespace Test_Unit
 
 
             //Assert
-            Assert.IsNull(lager2.Reoler);
+            Assert.AreEqual(lager2.Reoler.Count(),0);
         }
     }
 }

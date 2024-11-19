@@ -15,7 +15,6 @@ namespace Data_Access.Mappers
         {
             return new LagerDTO(lager.Navn, lager.Adresse, lager.Kontaktperson);
         }
-
         public static Lager Map(LagerDTO lager)
         {
             return new Lager( lager.Navn, lager.Adresse, lager.Kontaktperson);

@@ -27,7 +27,7 @@ namespace Test_Unit
 
 
         [Test]
-        public virtual void OpretProduktForventetTestMAD()
+        public void OpretProduktForventetTestMAD()
         {
             //Arrange 
 
@@ -40,19 +40,20 @@ namespace Test_Unit
 
 
 
-            bool produktEksister = alleProdukter.Any(p => p.Id == _produktDTO.Id);
+            IProdukt produkt = _lagerBll.GetProdukt(1);
+            bool produktEksister = alleProdukter.Any(p => p.Id == produkt.Id);
             // Assert - sammenligner DTO-objekt fra brugergrænseflade med objekt fra databasen
             Assert.That(produktEksister, Is.True, "Produkt blev ikke fundet");
+            Assert.That(1,Is.EqualTo(produkt.Id));
         }
 
 
         [Test]
-        public virtual void OpretProduktForventetTestNonFood()
+        public  void OpretProduktForventetTestNonFood()
         {
             //Arrange 
 
             _produktDTO = new NonfoodDTO(200, "Test", "Dette er en beksrivelse til nonFood Test");
-
 
 
 
@@ -70,7 +71,7 @@ namespace Test_Unit
 
 
         [Test]
-        public virtual void OpretProduktForventetTestVin()
+        public  void OpretProduktForventetTestVin()
         {
             //Arrange 
             _produktDTO = new VinDTO(200, "TestVin", "Test af ProduktTDD", DTO_.Enums.VinType.Rosevin, 200);
@@ -82,8 +83,8 @@ namespace Test_Unit
 
 
 
-            bool produktEksister = alleProdukter.Any(p => p.Id == _produktDTO.Id);
-            // Assert - sammenligner DTO-objekt fra brugergrænseflade med objekt fra databasen
+            bool produktEksister = alleProdukter.Any(p => p.Id == _produktDTO.Id );
+            //Assert - sammenligner DTO-objekt fra brugergrænseflade med objekt fra databasen
             Assert.That(produktEksister, Is.True, "Produkt blev ikke fundet");
         }
 
@@ -94,7 +95,7 @@ namespace Test_Unit
 
 
         [Test]
-        public virtual void OpretProduktForventetTestSpiritus()
+        public void OpretProduktForventetTestSpiritus()
         {
             //Arrange 
             _produktDTO = new SpiritusDTO(200, "TestSpiritus", "Dette er ProduktTDD test", 10.00, 24.00, 2023, DTO_.Enums.SpiritusType.Rom);
@@ -107,17 +108,52 @@ namespace Test_Unit
 
 
 
+
+
+
+
+
+
+
             bool produktEksister = alleProdukter.Any(p => p.Id == _produktDTO.Id);
             // Assert - sammenligner DTO-objekt fra brugergrænseflade med objekt fra databasen
             Assert.That(produktEksister, Is.True, "Produkt blev ikke fundet");
 
 
 
+
+
         }
 
 
+           [Test]
+            public void FjernProdukt()
+            {
+                //Arrange & ACT
+    
+                
+              
+            
+            
+            IProdukt specfiktRandomTestObjekt = _lagerBll.GetAlleProdukt().FirstOrDefault(p => p.Beskrivelse.EndsWith("ProduktTDD"));
+            _lagerBll.FjernProdukt(specfiktRandomTestObjekt.Id);
+            List<IProdukt> alleProdukter = _lagerBll.GetAlleProdukt();
+            bool produktEksister = alleProdukter.Any(p=> p.Id == specfiktRandomTestObjekt.Id);
+            //ASSERT
+            Assert.That(produktEksister, Is.False);
+         
+
+
+
+
+
+
+            }
+
+       
+
     }
-
-
-
 }
+
+
+

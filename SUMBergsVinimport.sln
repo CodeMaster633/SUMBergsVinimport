@@ -10,8 +10,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTO_", "DTO_\DTO_.csproj", "{86F7646B-E801-4A3C-B340-DCF17D16127C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test_Unit", "Test_Unit\Test_Unit.csproj", "{DB8BDA6B-6FF1-43F1-AC04-3AFF233FE302}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D11DD83F-77AC-4B9E-A25C-0814496C64EF} = {D11DD83F-77AC-4B9E-A25C-0814496C64EF}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BergVinImportGUI", "BergVinImportGUI\BergVinImportGUI.csproj", "{F574CA92-F1FA-4929-8C4D-0F126B62CB29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BergVinImportGUI", "BergVinImportGUI\BergVinImportGUI.csproj", "{F574CA92-F1FA-4929-8C4D-0F126B62CB29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
