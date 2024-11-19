@@ -152,10 +152,6 @@ namespace Data_Access.Repositories
 
         }
 
-
-
-<<<<<<< HEAD
-=======
         //public static void TildelLagerReol(LagerDTO lagerDTO, ReolDTO reolDTO)
         //{
             
@@ -184,7 +180,6 @@ namespace Data_Access.Repositories
 
         //}
 
->>>>>>> 7d814199c87b69fcda5e96d0aae7fec575d1795d
         public static void TildelRelation(string parentId, string childId, DTO_.Model.ReltationType relationType)
         {
             //     usning()
@@ -208,9 +203,6 @@ namespace Data_Access.Repositories
                 context.SaveChanges();
             }
         }
-<<<<<<< HEAD
-=======
-
         public static void OpretReol(int antalHylder, int antalPladserPrHylde, LagerDTO lager)
         {
             using (LagerContext context = new LagerContext())
@@ -268,10 +260,6 @@ namespace Data_Access.Repositories
                 }
             }
         }
-
-
- 
->>>>>>> 7d814199c87b69fcda5e96d0aae7fec575d1795d
     }
 }
 

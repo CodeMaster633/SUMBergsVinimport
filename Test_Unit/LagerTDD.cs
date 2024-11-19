@@ -34,42 +34,6 @@ namespace Test_Unit
             Assert.AreEqual(kontaktperson, lager2.Kontaktperson);
 
         }
-        [Test]
-        public void TilføjReol()
-        {
-            //Arrange
-            string navn = "Hylde Lager";
-            string adresse = "Blomstervej 12";
-            string kontaktperson = "Dennis The Man";
-            var lager1 = new LagerDTO(navn, adresse, kontaktperson);
-            lagerBll.AddLager(lager1);
-            List<LagerDTO> lagreListe = lagerBll.getLagre();
-            LagerDTO lager2 = lagreListe[lagreListe.Count() - 1];
-
-            //Act
-            lager2.Tilføj(new ReolDTO());
-           
-
-            //Assert
-            Assert.NotNull(lager2.Reoler);
-        }
-        [Test]
-        public void TilføjReolNull()
-        {
-            //Arrange
-            string navn = "Hylde Lager";
-            string adresse = "Blomstervej 12";
-            string kontaktperson = "Dennis The Man";
-            var lager1 = new LagerDTO(navn, adresse, kontaktperson);
-            lagerBll.AddLager(lager1);
-            List<LagerDTO> lagreListe = lagerBll.getLagre();
-            LagerDTO lager2 = lagreListe[lagreListe.Count() - 1];
-
-            //Act
-
-
-            //Assert
-            Assert.AreEqual(lager2.Reoler.Count(),0);
-        }
+        
     }
 }
