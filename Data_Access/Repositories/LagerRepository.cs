@@ -208,7 +208,7 @@ namespace Data_Access.Repositories
                 context.SaveChanges();
             }
         }
-<<<<<<< HEAD
+
 =======
 
         public static void OpretReol(int antalHylder, int antalPladserPrHylde, LagerDTO lager)
