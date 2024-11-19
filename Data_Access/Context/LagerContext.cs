@@ -94,16 +94,13 @@ namespace Data_Access.Context
             .Property(p => p.Id)
             .ValueGeneratedOnAdd(); // SQL Server genererer automatisk Id
 
-            modelBuilder.Entity<Lager>().HasData(new Lager[] {
-                new Lager{LagerId =-1,Navn="Tilst Lager", Adresse="Tilst", Kontaktperson="Dennis"},
-                new Lager{LagerId= -2,Navn="Harlev Butik", Adresse="Harlev", Kontaktperson="Dennis"},
-                new Lager{LagerId= -3,Navn="Harlev Lager", Adresse="Harlev", Kontaktperson="Dennis"}
-            });
+            //modelBuilder.Entity<Lager>().HasData(new Lager[] {
+            //    new Lager{LagerId =-1,Navn="Tilst Lager", Adresse="Tilst", Kontaktperson="Dennis"},
+            //    new Lager{LagerId= -2,Navn="Harlev Butik", Adresse="Harlev", Kontaktperson="Dennis"},
+            //    new Lager{LagerId= -3,Navn="Harlev Lager", Adresse="Harlev", Kontaktperson="Dennis"}
+            //});
 		}
         public DbSet<Lager> Lagre { get; set; }
-        public DbSet<Reol> Reoler { get; set; }
-        public DbSet<Hylde> Hylder { get; set; }
-        public DbSet<Plads> Pladser { get; set; }
         public DbSet<Produkt> Produkt { get; set; } 
 
         public DbSet<Mad> Mad { get; set; }

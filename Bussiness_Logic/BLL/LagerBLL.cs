@@ -101,13 +101,6 @@ namespace Business_Logic.BLL
 
 		}
 
-		public void TildelLagerReol(LagerDTO lagerDTO, ReolDTO reolDTO)
-		{
-			LagerRepository.TildelLagerReol(lagerDTO,reolDTO);
-
-		}
-
-
 
 		public void TildelRelation(string parentId, string childId, ReltationType relationType)
 		{

@@ -154,34 +154,6 @@ namespace Data_Access.Repositories
 
 
 
-        public static void TildelLagerReol(LagerDTO lagerDTO, ReolDTO reolDTO)
-        {
-            
-            using (LagerContext context = new LagerContext())
-            {
-               Lager lager = context.Lagre.FirstOrDefault(l=>l.LagerId == lagerDTO.LagerId);
-               Reol reol = context;
-
-                if(lager == null)
-                {
-                    throw new Exception("Lager ikke fundet i databasen");
-                }
-
-                if(reol == null)
-                {
-                    throw new Exception("Reol ikke fundet i databasen");
-                }
-                //Tildeler foreign key til reol
-                reol.LagerId = lager.LagerId;
-
-                context.SaveChanges();
-
-                   
-
-            }
-
-        }
-
         public static void TildelRelation(string parentId, string childId, DTO_.Model.ReltationType relationType)
         {
             //     usning()
@@ -203,14 +175,6 @@ namespace Data_Access.Repositories
                 Data_Access.Model.Lager lag = LagerMapper.Map(lager);
                 context.Lagre.Add(lag);
                 context.SaveChanges();
-            }
-        }
-
-        public static void OpretReol(int antalHylder, int antalPladserPrHylde, LagerDTO lager)
-        {
-            using (LagerContext context = new LagerContext())
-            {
-
             }
         }
     }
