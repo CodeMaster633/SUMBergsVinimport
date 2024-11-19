@@ -9,7 +9,6 @@ namespace Data_Access.Model
 	public class Produkt : IProdukt
 	{
 		private List<IBesked> beskeder = new List<IBesked>();
-		public DateTime Udlobsdato { get; set; }
 		public int Id { get; set; }
 		public int Pris { get; set; }
 		public string Navn { get; set; }
@@ -17,7 +16,7 @@ namespace Data_Access.Model
 
 		public void TjekUdlobsdato()
 		{
-			if (Udlobsdato <= DateTime.Now.AddMonths(1))
+			//if (Udlobsdato <= DateTime.Now.AddMonths(1))
 			{
 				Notify("Udløbsdato nærmer sig for produktet");
 			}

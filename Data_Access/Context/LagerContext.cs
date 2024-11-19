@@ -7,6 +7,7 @@ namespace Data_Access.Context
 {
     internal class LagerContext : DbContext
     {
+        //public bool IsTestContext { get; set; } = false;
         public LagerContext()
         {
             bool created = Database.EnsureCreated();
@@ -17,8 +18,8 @@ namespace Data_Access.Context
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=LAPTOP-TT7JTDJT\\SQLEXPRESS;Initial Catalog=Lagre;Integrated Security = SSPI; TrustServerCertificate=true");
-            //optionsBuilder.UseSqlServer("Data Source=LAPTOP-CP8PKIBC\\SQLEXPRESS;Initial Catalog=Lager;Integrated Security=True; TrustServerCertificate=true");
+            //optionsBuilder.UseSqlServer("Data Source=LAPTOP-TT7JTDJT\\SQLEXPRESS;Initial Catalog=Lagre;Integrated Security = SSPI; TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("Data Source=LAPTOP-CP8PKIBC\\SQLEXPRESS;Initial Catalog=Lager;Integrated Security=True; TrustServerCertificate=true");
             //optionsBuilder.UseSqlServer("Server=localhost,1433;Database=Lagre;User Id=sa;Password=reallyStrongPwd123;TrustServerCertificate=true");
             //optionsBuilder.UseSqlServer("Data Source=MRCARLSEN\\SQLEXPRESS;Initial Catalog=Lagre;Integrated Security = SSPI; TrustServerCertificate=true");
             optionsBuilder.LogTo(message => Debug.WriteLine(message));
@@ -34,6 +35,21 @@ namespace Data_Access.Context
         .WithMany(l => l.Reoler)
         .HasForeignKey(r => r.LagerID);
              */
+
+
+            // Fjern ValueGeneratedOnAdd for testkontekst
+            //if (IsTestContext)
+            //{
+            //    modelBuilder.Entity<Produkt>()
+            //        .Property(p => p.Id)
+            //        .ValueGeneratedNever(); // Tillader manuel tildeling af ID'er
+            //}
+            //else
+            //{
+            //    modelBuilder.Entity<Produkt>()
+            //        .Property(p => p.Id)
+            //        .ValueGeneratedOnAdd(); // Standard produktion
+            //}
 
             modelBuilder.Entity<Lager>().HasData(new Lager[]
             {
