@@ -126,6 +126,16 @@ namespace Data_Access.Repositories
             }
         }
 
+        public static List<DTO_.Model.IProdukt> getProdukterPaaLager(int id)
+        {
+            using (LagerContext context = new LagerContext())
+            {
+                LagerDTO lager = LagerMapper.Map(context.Lagre.Find(id));
+                List<DTO_.Model.IProdukt> produkter = lager.Produkter;
+                return produkter;
+            }
+        }
+
 
         public static List<DTO_.Model.IProdukt> GetAlleProdukter()
         {
