@@ -152,49 +152,23 @@ namespace Data_Access.Repositories
 
         }
 
-        //public static void TildelLagerReol(LagerDTO lagerDTO, ReolDTO reolDTO)
-        //{
-            
-        //    using (LagerContext context = new LagerContext())
-        //    {
-        //       Lager lager = context.Lagre.FirstOrDefault(l=>l.LagerId == lagerDTO.LagerId);
-        //       Reol reol = context;   
-
-        //        if(lager == null)
-        //        {
-        //            throw new Exception("Lager ikke fundet i databasen");
-        //        }
-
-        //        if(reol == null)
-        //        {
-        //            throw new Exception("Reol ikke fundet i databasen");
-        //        }
-        //        //Tildeler foreign key til reol
-        //        reol.LagerId = lager.LagerId;
-
-        //        context.SaveChanges();
-
-                   
-
-        //    }
-
-        //}
-
-        public static void TildelRelation(string parentId, string childId, DTO_.Model.ReltationType relationType)
+        public static List<DTO_.Model.IProdukt> GetProdukterPaaLager(int lagerId)
         {
-            //     usning()
-            //switch (relationType)
-            //{
-            //	case ReltationType.LagerTilReol:
-            //		var lager = _context.Lagere.Find(parentId);
-            //		var reol = _context.Reoler.Find(childId);
-            //		if (lager == null || reol == null) throw new Exception("Lager eller Reol ikke fundet.");
-            //		reol.LagerId = parentId;
-            //		break;
-            //}
-        }
+            List<DTO_.Model.IProdukt> liste = GetAlleProdukter();
+            List<DTO_.Model.IProdukt> nyListe = new List<DTO_.Model.IProdukt>();
 
-        public static void AddLager(LagerDTO lager)
+            foreach (var produkt in liste)
+            {
+                if (produkt.LagerId == lagerId) {
+                    nyListe.Add(produkt);
+                }
+            }
+
+            return nyListe;
+        }
+        
+
+            public static void AddLager(LagerDTO lager)
         {
             using (LagerContext context = new LagerContext())
             {
@@ -203,16 +177,7 @@ namespace Data_Access.Repositories
                 context.SaveChanges();
             }
         }
-        public static void OpretReol(int antalHylder, int antalPladserPrHylde, LagerDTO lager)
-        {
-            using (LagerContext context = new LagerContext())
-            {
-
-            }
-        }
-
-
-
+       
         public static DTO_.Model.IProdukt GetProdukt(int id)
         {
             using (LagerContext context = new LagerContext())

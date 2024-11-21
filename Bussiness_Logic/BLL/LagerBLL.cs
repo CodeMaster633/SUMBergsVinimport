@@ -81,10 +81,6 @@ namespace Business_Logic.BLL
 		//}
 
 
-		public void OpretReol(int antalHylder, int antalPladserPrHylde, LagerDTO lager) {
-			LagerRepository.OpretReol(antalHylder, antalPladserPrHylde, lager);
-		
-        }
        
 		
 		
