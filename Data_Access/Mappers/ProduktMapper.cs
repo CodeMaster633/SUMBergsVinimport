@@ -44,7 +44,8 @@ public class ProduktMapper
             Id = nonfood.Id,
             Pris = nonfood.Pris,
             Navn = nonfood.Navn,
-            Beskrivelse = nonfood.Beskrivelse
+            Beskrivelse = nonfood.Beskrivelse,
+            LagerId = nonfood.LagerId
         };
     }
 
@@ -58,6 +59,7 @@ public class ProduktMapper
             Beskrivelse = nonfood.Beskrivelse
         };
         nonfoodDTO.Id=nonfood.Id;
+        nonfoodDTO.LagerId = nonfood.LagerId;
         return nonfoodDTO;
     }
 
@@ -67,6 +69,7 @@ public class ProduktMapper
     {
         SpiritusDTO spiritusDTO = new SpiritusDTO( spiritus.Pris, spiritus.Navn, spiritus.Beskrivelse, spiritus.Alkoholprocent, spiritus.Liter, spiritus.Produktionsår, spiritus.SpiritusType);
         spiritusDTO.Id = spiritus.Id;
+        spiritusDTO.LagerId=spiritus.LagerId;
         return spiritusDTO;
     }
 
@@ -80,7 +83,8 @@ public class ProduktMapper
             Beskrivelse = spiritusDto.Beskrivelse,
             Alkoholprocent = spiritusDto.Alkoholprocent,
             Liter = spiritusDto.Liter,
-            Produktionsår = spiritusDto.Produktionsår
+            Produktionsår = spiritusDto.Produktionsår,
+            LagerId = spiritusDto.LagerId
         };
     }
     //Vin
@@ -93,14 +97,15 @@ public class ProduktMapper
             Navn = vinDTO.Navn,
             Beskrivelse = vinDTO.Beskrivelse,
             VinType = vinDTO.VinType,
-            Liter = vinDTO.Liter
+            Liter = vinDTO.Liter,
+            LagerId= vinDTO.LagerId
 
 
         };
     }
     public static VinDTO MapVinTilDTO(Vin vin)
     {
-        return new VinDTO
+        VinDTO vinDTO = new VinDTO
         {
             
             Pris = vin.Pris,
@@ -109,6 +114,10 @@ public class ProduktMapper
             VinType = vin.VinType,
             Liter = vin.Liter,
         };
+        vinDTO.Id = vin.Id;
+        vinDTO.LagerId = vin.LagerId;
+        return vinDTO;
+        
     }
     //ØL
     public static Øl MapØlTilEntity(ØlDTO ølDTO)
@@ -120,7 +129,8 @@ public class ProduktMapper
             Navn = ølDTO.Navn,
             Beskrivelse = ølDTO.Beskrivelse,
             Udloebsdato = ølDTO.Udloebsdato,
-            Liter = ølDTO.Liter
+            Liter = ølDTO.Liter,
+            LagerId = ølDTO .LagerId
         };
         
     }
@@ -137,6 +147,7 @@ public class ProduktMapper
         };
 
         ølDTO.Id = øl.Id;
+        ølDTO.LagerId = øl.LagerId;
         return ølDTO;
     }
 
