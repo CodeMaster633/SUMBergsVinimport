@@ -12,5 +12,6 @@ namespace DTO_.Model
 		int Pris { get; set; }
 		string Navn { get; set; }
 		string Beskrivelse { get; set; }
+		int LagerId {  get; set; }
 	}
 }

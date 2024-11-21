@@ -13,11 +13,17 @@ namespace Data_Access.Mappers
     {
         public static LagerDTO Map(Lager lager)
         {
-            return new LagerDTO(lager.Navn, lager.Adresse, lager.Kontaktperson);
+           LagerDTO lagerDTO = new LagerDTO(lager.Navn, lager.Adresse, lager.Kontaktperson);
+            lagerDTO.LagerId = lager.LagerId;
+
+            return lagerDTO;
         }
         public static Lager Map(LagerDTO lager)
         {
-            return new Lager( lager.Navn, lager.Adresse, lager.Kontaktperson);
+           Lager lagerModel =  new Lager(lager.Navn, lager.Adresse, lager.Kontaktperson);
+            lagerModel.LagerId = lager.LagerId;
+            return lagerModel;
+
         }
     }
 }

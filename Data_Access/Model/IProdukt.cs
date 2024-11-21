@@ -7,6 +7,8 @@ public interface IProdukt
     string Navn { get; set; }
     string Beskrivelse { get; set; }
 
+    public int LagerId { get; set; }
+
     void TjekUdlobsdato()
     {
     }

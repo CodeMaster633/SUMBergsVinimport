@@ -14,9 +14,9 @@ namespace Business_Logic.BLL
 	public class LagerBLL
 	{
 		//Opret produkt tager Super klasen for at gør denne metode mulige at oprette alle produkt sub typer i databasen
-		public void OpretProdukt(IProdukt produkt)
+		public int OpretProdukt(IProdukt produkt,LagerDTO lager)
 		{
-			LagerRepository.OpretProdukt(produkt);
+			return LagerRepository.OpretProdukt(produkt,lager);
 		}
 		public List<IProdukt> GetAlleProdukt()
 		{
