@@ -18,6 +18,7 @@ public class ProduktMapper
                 Udloebsdato = mad.Udloebsdato
             };
         madDTO.Id = mad.Id;
+        madDTO.LagerId = mad.LagerId;
         return madDTO;
         }
 
@@ -30,7 +31,8 @@ public class ProduktMapper
                 Pris = madDto.Pris,
                 Navn = madDto.Navn,
                 Beskrivelse = madDto.Beskrivelse,
-                Udloebsdato = madDto.Udloebsdato
+                Udloebsdato = madDto.Udloebsdato,
+                LagerId = madDto.LagerId,
             };
         }
 

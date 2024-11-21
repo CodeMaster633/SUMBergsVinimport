@@ -190,7 +190,7 @@ namespace BergVinImportGUI.Controllers
             }
 
             Console.WriteLine("Kig her " + produktDTO.Navn);
-            lagerBll.OpretProdukt(produktDTO);
+            //lagerBll.OpretProdukt(produktDTO);
 
             PopulateProductList();
 

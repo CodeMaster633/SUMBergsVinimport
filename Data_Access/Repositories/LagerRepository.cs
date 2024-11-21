@@ -16,41 +16,56 @@ namespace Data_Access.Repositories
     public class LagerRepository
     {
 
-        public static void OpretProdukt(DTO_.Model.IProdukt produkt)
+        public static int OpretProdukt(DTO_.Model.IProdukt produkt,LagerDTO lager)
         {
+            Model.IProdukt produktID = null;
             using (LagerContext context = new LagerContext())
             {
                 if (produkt is DTO_.Model.MadDTO madDTO)
                 {
                     madDTO.Id = 0;
+                    madDTO.LagerId = lager.LagerId;
                     Model.Mad mad = ProduktMapper.MapTilMadEntity(madDTO);
+                    produktID = mad;
+                    //mad.LagerId = lager.LagerId;
                     context.Mad.Add(mad);
+                 
                 }
                 else if (produkt is DTO_.Model.SpiritusDTO spiritusDTO)
                 {
                     spiritusDTO.Id = 0;
                     Model.Spiritus spiritus = ProduktMapper.MapTilSpiritusEntity(spiritusDTO);
+                    produktID = spiritus;
+                    spiritus.LagerId=lager.LagerId;
                     context.Spiritus.Add(spiritus);
                 }
                 else if (produkt is DTO_.Model.NonfoodDTO nonfoodDTO)
                 {
                     nonfoodDTO.Id = 0;
                     Model.Nonfood nonfood = ProduktMapper.MaptilNonFoodEntity(nonfoodDTO);
+                    produktID = nonfood;
+                    nonfood.LagerId = lager.LagerId;
                     context.Nonfoods.Add(nonfood);
                 }
                 else if (produkt is DTO_.Model.VinDTO vinDTO)
                 {
                     vinDTO.Id = 0;
                     Model.Vin vin = ProduktMapper.MapTilVinEntity(vinDTO);
+                    produktID = vin;
+                    vin.LagerId = lager.LagerId;
                     context.Vin.Add(vin);
                 }
                 else if (produkt is DTO_.Model.ØlDTO ølDTO)
                 {
                     ølDTO.Id = 0;
                     Model.Øl øl = ProduktMapper.MapØlTilEntity(ølDTO);
+                    produktID = øl;
+                    øl.LagerId = lager.LagerId;
                     context.Øls.Add(øl);
                 }
+
                 context.SaveChanges();
+                return  produktID.Id;
             }
         }
 
