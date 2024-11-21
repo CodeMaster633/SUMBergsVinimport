@@ -68,6 +68,11 @@ namespace Business_Logic.BLL
 			
 		}
 
+		public List<IProdukt> getProdukterPaaLager(int id)
+		{
+			return LagerRepository.getProdukterPaaLager(id) ?? new List<IProdukt>();
+		}
+
         public void AddLager(LagerDTO lager)
         {
             //valider lager
