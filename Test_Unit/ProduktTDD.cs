@@ -32,19 +32,20 @@ namespace Test_Unit
             //Arrange 
 
             _produktDTO = new MadDTO(200, "TEST", "Dette er fra test ProduktTDD", new DateTime(2026, 10, 11));
+            LagerDTO lager = _lagerBll.getLager(1);
 
             //ACT
-
-            _lagerBll.OpretProdukt(_produktDTO);
+            
+            int _produktDTOId =_lagerBll.OpretProdukt(_produktDTO, lager);
             List<IProdukt> alleProdukter = _lagerBll.GetAlleProdukt();
 
 
 
-            IProdukt produkt = _lagerBll.GetProdukt(1);
+            IProdukt produkt = _lagerBll.GetProdukt(_produktDTOId);
             bool produktEksister = alleProdukter.Any(p => p.Id == produkt.Id);
             // Assert - sammenligner DTO-objekt fra brugergrænseflade med objekt fra databasen
             Assert.That(produktEksister, Is.True, "Produkt blev ikke fundet");
-            Assert.That(1,Is.EqualTo(produkt.Id));
+            Assert.That(_produktDTOId,Is.EqualTo(produkt.Id));
         }
 
 
@@ -58,7 +59,7 @@ namespace Test_Unit
 
 
             //ACT
-            _lagerBll.OpretProdukt(_produktDTO);
+            //_lagerBll.OpretProdukt(_produktDTO);
             List<IProdukt> alleProdukter = _lagerBll.GetAlleProdukt();
 
 
@@ -78,7 +79,7 @@ namespace Test_Unit
 
 
             //ACT
-            _lagerBll.OpretProdukt(_produktDTO);
+            //_lagerBll.OpretProdukt(_produktDTO);
             List<IProdukt> alleProdukter = _lagerBll.GetAlleProdukt();
 
 
@@ -103,7 +104,7 @@ namespace Test_Unit
 
 
             //ACT
-            _lagerBll.OpretProdukt(_produktDTO);
+            //_lagerBll.OpretProdukt(_produktDTO);
             List<IProdukt> alleProdukter = _lagerBll.GetAlleProdukt();
 
 

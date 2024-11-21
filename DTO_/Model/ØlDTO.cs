@@ -25,5 +25,6 @@ namespace DTO_.Model
 		public string Beskrivelse { get; set; }
 		public DateTime Udloebsdato { get; set; }
 		public double Liter { get; set; }
-}
+        public int LagerId { get; set; }
+    }
 }
