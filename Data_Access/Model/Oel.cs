@@ -1,14 +1,15 @@
 namespace Data_Access.Model;
 
-public class Øl : Produkt
+public class Oel : Produkt
 {
-    public Øl() {}
+    public Oel() {}
 
-    public Øl(int id, int pris, string navn, string beskrivelse, DateTime udloebsdato, double liter)
+    public Oel(int id, int pris, string navn, int antal, string beskrivelse, DateTime udloebsdato, double liter)
     {
         Id = id;
         Pris = pris;
         Navn = navn;
+        Antal = antal;
         Beskrivelse = beskrivelse;
         Udloebsdato = udloebsdato;
         Liter = liter;

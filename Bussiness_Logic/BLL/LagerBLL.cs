@@ -34,7 +34,7 @@ namespace Business_Logic.BLL
             return LagerRepository.GetVinById(produktId);
         }
 
-        public ØlDTO GetØlProdukt(int produktId)
+        public OelDTO GetØlProdukt(int produktId)
         {
             return LagerRepository.GetØlById(produktId);
         }
@@ -111,7 +111,11 @@ namespace Business_Logic.BLL
 
 
 		}
-		
+		//Udløbsdato besked
+		public List<IProdukt> DatoTjek()
+		{
+			return LagerRepository.TjekUdlobsdato();
+		}
 
 	}
 }
