@@ -46,7 +46,7 @@ public class ProduktMapper
             Pris = nonfood.Pris,
             Navn = nonfood.Navn,
             Antal = nonfood.Antal,
-            Beskrivelse = nonfood.Beskrivelse
+            Beskrivelse = nonfood.Beskrivelse,
             LagerId = nonfood.LagerId
         };
     }

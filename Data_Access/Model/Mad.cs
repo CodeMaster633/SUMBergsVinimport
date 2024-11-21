@@ -4,7 +4,7 @@ public class Mad : Produkt
 {
 	public Mad() { }
 
-	public Mad(int id, int pris, string navn, int antal, string beskrivelse, DateTime udloebsdato)
+	public Mad(int id, int pris, string navn, int antal, string beskrivelse, DateTime udloebsdato);
 	public Mad(int id, int pris, string navn, string beskrivelse, DateTime udloebsdato, int lagerId)
 	{
 		Id = id;

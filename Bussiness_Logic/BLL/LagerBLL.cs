@@ -104,10 +104,7 @@ namespace Business_Logic.BLL
 		}
 
 
-
-
-
-		}
+		
 		//Udløbsdato besked
 		public List<IProdukt> DatoTjek()
 		{

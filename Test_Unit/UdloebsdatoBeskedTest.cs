@@ -1,5 +1,4 @@
 using Business_Logic.BLL;
-using Data_Access.Model;
 using DTO_.Model;
 using IProdukt = DTO_.Model.IProdukt;
 
@@ -7,11 +6,13 @@ namespace Test_Unit;
 public class UdloebsdatoBeskedTest
 {
     private LagerBLL _lagerBll;
+    private LagerDTO lager;
     [SetUp]
     public void Setup()
     {
 
         _lagerBll = new LagerBLL();
+        lager = new LagerDTO();
     }
     [Test]
     public void UdloebsDatoTest()
@@ -21,8 +22,8 @@ public class UdloebsdatoBeskedTest
         var p2 = new OelDTO(200, "Gamma", 50, "Dette er fra test UdloebsDatoTest", new DateTime(2024, 12, 30), 0.5);
         
         //Act
-        _lagerBll.OpretProdukt(p1);
-        _lagerBll.OpretProdukt(p2);
+        _lagerBll.OpretProdukt(p1,lager);
+        _lagerBll.OpretProdukt(p2,lager);
         var tjekedeprodukter = _lagerBll.DatoTjek();
         
         //Assert
