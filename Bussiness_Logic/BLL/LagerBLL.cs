@@ -104,10 +104,6 @@ namespace Business_Logic.BLL
 		}
 
 
-		public void TildelRelation(string parentId, string childId, ReltationType relationType)
-		{
-		
-			
 
 
 
