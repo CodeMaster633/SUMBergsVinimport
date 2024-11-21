@@ -22,4 +22,5 @@ public class MadDTO : IProdukt
     public int Antal { get; set; }
     public string Beskrivelse { get; set; }
     public DateTime Udloebsdato { get; set; }
+    public int LagerId { get; set; }
 }

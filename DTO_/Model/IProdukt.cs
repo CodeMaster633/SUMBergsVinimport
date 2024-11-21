@@ -13,6 +13,6 @@ namespace DTO_.Model
 		string Navn { get; set; }
 		int Antal { get; set; }
 		string Beskrivelse { get; set; }
-		
+		int LagerId {  get; set; }
 	}
 }

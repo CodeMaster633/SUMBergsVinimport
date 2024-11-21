@@ -25,4 +25,5 @@ public class VinDTO : IProdukt
     public VinType VinType { get; set; }
     public double Liter { get; set; }
     public string Nationalitet { get; set; }
+    public int LagerId { get; set; }
 }

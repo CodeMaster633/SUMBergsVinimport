@@ -18,5 +18,7 @@ public class NonfoodDTO : IProdukt
  public string Navn { get; set; }
  public int Antal { get; set; }
  public string Beskrivelse { get; set; }
- 
+    public int LagerId { get; set; }
+
+
 }

@@ -7,9 +7,17 @@
 }
 
 <ol>
-    @foreach (IProdukt produkt in ViewBag.Produkter)
+    @foreach (LagerDTO lager in ViewBag.lagre)
     {
-            <li>@produkt.Navn</li>
+        <li>
+            Lager: @lager.Navn
+            <ul>
+                @foreach (IProdukt produkt in lager.Produkter)
+                {
+                    <li>@produkt.Navn</li>
+                }
+            </ul>
+        </li>
     }
 </ol>
 

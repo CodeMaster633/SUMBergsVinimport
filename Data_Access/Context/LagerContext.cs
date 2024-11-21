@@ -68,7 +68,7 @@ namespace Data_Access.Context
             modelBuilder.Entity<Mad>().ToTable("Mad").HasBaseType<Produkt>();
             modelBuilder.Entity<Nonfood>().ToTable("Nonfood").HasBaseType<Produkt>();
             modelBuilder.Entity<Vin>().ToTable("Vin").HasBaseType<Produkt>();
-            modelBuilder.Entity<Oel>().ToTable("Øl").HasBaseType<Produkt>();
+            modelBuilder.Entity<Øl>().ToTable("Øl").HasBaseType<Produkt>();
             modelBuilder.Entity<Spiritus>().ToTable("Spiritus").HasBaseType<Produkt>();
 
             // dette kode ValueGenereted hvor ved hver post til Database skal der sættes et nyt unikt ID 

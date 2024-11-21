@@ -27,5 +27,6 @@ public class SpiritusDTO : IProdukt
     public double Alkoholprocent { get; set; }
     public int Produktionsaar { get; set; }
     public SpiritusType SpiritusType { get; set; }
+    public int LagerId { get; set; }
 
 }
