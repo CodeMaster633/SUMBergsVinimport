@@ -91,7 +91,7 @@ namespace Data_Access.Context
         public DbSet<Nonfood> Nonfoods { get; set; }
         public DbSet<Spiritus> Spiritus { get; set; }
 
-        public DbSet<Oel> Øls { get; set; }
+        public DbSet<Oel> Oel { get; set; }
         public DbSet<TjekkedeProdukter> TjekkedeProdukter { get; set; }
 
     }

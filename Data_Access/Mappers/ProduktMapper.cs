@@ -22,18 +22,18 @@ public class ProduktMapper
         return madDTO;
         }
 
-        public static Mad MapTilMadEntity(MadDTO madDto)
+        public static Mad MapTilMadEntity(MadDTO madDTO)
         {
             return new Mad
             {
                
-                Id = madDto.Id,
-                Pris = madDto.Pris,
-                Navn = madDto.Navn,
-                Antal = madDto.Antal,
-                Beskrivelse = madDto.Beskrivelse,
-                Udloebsdato = madDto.Udloebsdato,
-                LagerId = madDto.LagerId,
+                Id = madDTO.Id,
+                Pris = madDTO.Pris,
+                Navn = madDTO.Navn,
+                Antal = madDTO.Antal,
+                Beskrivelse = madDTO.Beskrivelse,
+                Udloebsdato = madDTO.Udloebsdato,
+                LagerId = madDTO.LagerId,
             };
         }
 
@@ -76,19 +76,19 @@ public class ProduktMapper
         return spiritusDTO;
     }
 
-    public static Spiritus MapTilSpiritusEntity(SpiritusDTO spiritusDto)
+    public static Spiritus MapTilSpiritusEntity(SpiritusDTO spiritusDTO)
     {
         return new Spiritus
         {
-            Id =spiritusDto.Id,
-            Pris = spiritusDto.Pris,
-            Navn = spiritusDto.Navn,
-            Antal = spiritusDto.Antal,
-            Beskrivelse = spiritusDto.Beskrivelse,
-            Alkoholprocent = spiritusDto.Alkoholprocent,
-            Liter = spiritusDto.Liter,
-            Produktionsår = spiritusDto.Produktionsaar
-            LagerId = spiritusDto.LagerId
+            Id =spiritusDTO.Id,
+            Pris = spiritusDTO.Pris,
+            Navn = spiritusDTO.Navn,
+            Antal = spiritusDTO.Antal,
+            Beskrivelse = spiritusDTO.Beskrivelse,
+            Alkoholprocent = spiritusDTO.Alkoholprocent,
+            Liter = spiritusDTO.Liter,
+            Produktionsår = spiritusDTO.Produktionsaar,
+            LagerId = spiritusDTO.LagerId
         };
     }
     //Vin
@@ -103,7 +103,7 @@ public class ProduktMapper
             Beskrivelse = vinDTO.Beskrivelse,
             VinType = vinDTO.VinType,
             Liter = vinDTO.Liter,
-            Nationalitet = vinDTO.Nationalitet
+            Nationalitet = vinDTO.Nationalitet,
             LagerId= vinDTO.LagerId
 
 
@@ -128,17 +128,17 @@ public class ProduktMapper
         
     }
     //ØL
-    public static Oel MapØlTilEntity(OelDTO oelDto)
+    public static Oel MapØlTilEntity(OelDTO oelDTO)
     {
         return new Oel
         {
-            Id = oelDto.Id,
-            Pris = oelDto.Pris,
-            Navn = oelDto.Navn,
-            Antal = oelDto.Antal,
-            Beskrivelse = oelDto.Beskrivelse,
-            Udloebsdato = oelDto.Udloebsdato,
-            Liter = oelDto.Liter,
+            Id = oelDTO.Id,
+            Pris = oelDTO.Pris,
+            Navn = oelDTO.Navn,
+            Antal = oelDTO.Antal,
+            Beskrivelse = oelDTO.Beskrivelse,
+            Udloebsdato = oelDTO.Udloebsdato,
+            Liter = oelDTO.Liter,
             LagerId = oelDTO.LagerId
         };
         
@@ -146,7 +146,7 @@ public class ProduktMapper
 
     public static OelDTO MapØlTilDTO(Oel oel)
     {
-        OelDTO oelDto =  new OelDTO
+        OelDTO oelDTO =  new OelDTO
         {
             Pris = oel.Pris,
             Navn = oel.Navn,
@@ -156,9 +156,9 @@ public class ProduktMapper
             Liter = oel.Liter
         };
 
-        oelDto.Id = oel.Id;
-        oelDto.LagerId = oel.LagerId;
-        return oelDto;
+        oelDTO.Id = oel.Id;
+        oelDTO.LagerId = oel.LagerId;
+        return oelDTO;
     }
 
 
