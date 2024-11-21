@@ -14,7 +14,6 @@ namespace Test_Unit
     {
 
         private IProdukt _produktDTO;
-        LagerDTO lager = null;
 
         private LagerBLL _lagerBll;
         [SetUp]

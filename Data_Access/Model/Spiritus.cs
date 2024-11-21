@@ -7,11 +7,12 @@ public class Spiritus : Produkt
 {
 	public Spiritus() { }
 
-	public Spiritus(int id, int pris, string navn, string beskrivelse, double alkoholprocent, double liter, int produktionsår, SpiritusType spiritusType)
+	public Spiritus(int id, int pris, string navn, int antal, string beskrivelse, double alkoholprocent, double liter, int produktionsår, SpiritusType spiritusType)
 	{
 		Id = id;  // Egenskaber fra Produkt kan sættes her
 		Pris = pris;
 		Navn = navn;
+		Antal = antal;
 		Beskrivelse = beskrivelse;
 		Alkoholprocent = alkoholprocent;
 		Liter = liter;

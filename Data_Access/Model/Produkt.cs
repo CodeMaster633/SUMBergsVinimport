@@ -8,10 +8,10 @@ namespace Data_Access.Model
 {
 	public class Produkt : IProdukt
 	{
-		private List<IBesked> beskeder = new List<IBesked>();
 		public int Id { get; set; }
 		public int Pris { get; set; }
 		public string Navn { get; set; }
+		public int Antal { get; set; }
 		public string Beskrivelse { get; set; }
 		public int LagerId {  get; set; }
 
@@ -39,5 +39,6 @@ namespace Data_Access.Model
 				observer.Update(this, besked);
 			}
 		}
+		
 		}
 	}

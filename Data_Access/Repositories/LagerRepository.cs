@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Mappers;
 using Data_Access.Model;
+using IProdukt = DTO_.Model.IProdukt;
 
 
 namespace Data_Access.Repositories
@@ -55,9 +56,10 @@ namespace Data_Access.Repositories
                     vin.LagerId = lager.LagerId;
                     context.Vin.Add(vin);
                 }
-                else if (produkt is DTO_.Model.ØlDTO ølDTO)
+                else if (produkt is DTO_.Model.OelDTO ølDTO)
                 {
                     ølDTO.Id = 0;
+                    Model.Oel øl = ProduktMapper.MapØlTilEntity(ølDTO);
                     Model.Øl øl = ProduktMapper.MapØlTilEntity(ølDTO);
                     produktID = øl;
                     øl.LagerId = lager.LagerId;
@@ -81,11 +83,11 @@ namespace Data_Access.Repositories
             }
         }
 
-        public static ØlDTO GetØlById(int id)
+        public static OelDTO GetØlById(int id)
         {
             using (LagerContext context = new LagerContext())
             {
-                Øl øl = context.Øls.Find(id);
+                Oel øl = context.Øls.Find(id);
                 return øl != null ? ProduktMapper.MapØlTilDTO(øl) : null;
             }
         }
@@ -159,7 +161,7 @@ namespace Data_Access.Repositories
                 //Man kan bruge entity framework til at samle  ale produktyper i  en list 
                 List<MadDTO> madProdukter = context.Mad.Select(m => ProduktMapper.MapTilMadDTO(m)).ToList();
                 List<VinDTO> vinProdukter = context.Vin.Select(v => ProduktMapper.MapVinTilDTO(v)).ToList();
-                List<ØlDTO> ølProdukter = context.Øls.Select(o => ProduktMapper.MapØlTilDTO(o)).ToList();
+                List<OelDTO> ølProdukter = context.Øls.Select(o => ProduktMapper.MapØlTilDTO(o)).ToList();
                 List<NonfoodDTO> nonFoddProdukter = context.Nonfoods.Select(nF => ProduktMapper.MapTilNonfoodDTO(nF)).ToList();
                 List<SpiritusDTO> spiritusProdukter = context.Spiritus.Select(s => ProduktMapper.MapTilSpiritusDTO(s)).ToList();
 
@@ -248,6 +250,85 @@ namespace Data_Access.Repositories
                     context.Produkt.Remove((Produkt)produktRemoved);
                     context.SaveChanges();  
                 }
+            }
+        }
+        //Udløbsdato besked logik
+        public static List<IProdukt> TjekUdlobsdato()
+        {
+            using (var context = new LagerContext())
+            {
+                // Hent og map Mad-produkter til DTO'er
+                var madProdukterDto = context.Produkt
+                    .OfType<Mad>()
+                    .Where(m => m.Udloebsdato <= DateTime.Now.AddMonths(3))
+                    .Select(m => ProduktMapper.MapTilMadDTO(m)) // Mapper til MadDTO
+                    .ToList();
+
+                // Hent og map Øl-produkter til DTO'er
+                var olProdukterDto = context.Produkt
+                    .OfType<Oel>()
+                    .Where(o => o.Udloebsdato <= DateTime.Now.AddMonths(3))
+                    .Select(o => ProduktMapper.MapØlTilDTO(o)) // Mapper til OelDTO
+                    .ToList();
+
+                // Hent IDs for allerede tjekkede produkter
+                var tjekId = context.TjekkedeProdukter
+                    .Select(tp => tp.Id)
+                    .ToHashSet();
+                
+                
+
+                // Kombinér og filtrér de nye produkter
+                var nyeMadProdukter = madProdukterDto
+                    .Where(p => !tjekId.Contains(p.Id))
+                    .ToList();
+                
+                var nyeOelProdukter = olProdukterDto
+                    .Where(p => !tjekId.Contains(p.Id))
+                    .ToList();
+
+
+                // Tilføj de nye produkter til listen over tjekkede produkter
+
+                foreach (var madProdukt in nyeMadProdukter)
+                {
+
+                    context.TjekkedeProdukter.Add(new TjekkedeProdukter
+                    {
+                        TjekId = Guid.NewGuid(),
+                        Navn = madProdukt.Navn,
+                        Antal = madProdukt.Antal,
+                        Udloebsdato = madProdukt.Udloebsdato,
+                        TjekketDato = DateTime.Now
+                    });
+                }
+
+                foreach (var oelProdukt in nyeOelProdukter)
+                {
+
+                    context.TjekkedeProdukter.Add(new TjekkedeProdukter
+                    {
+                        TjekId = Guid.NewGuid(),
+                        Navn = oelProdukt.Navn,
+                        Antal = oelProdukt.Antal,
+                        Udloebsdato = oelProdukt.Udloebsdato,
+                        TjekketDato = DateTime.Now
+                    });
+                }
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Fejl ved SaveChanges: {ex.Message}");
+                    throw;
+                }
+                var nyeProdukter = nyeMadProdukter.Cast<IProdukt>().ToList();
+                nyeProdukter.AddRange(nyeOelProdukter.Cast<IProdukt>());
+
+                return nyeProdukter;
+                
             }
         }
     }

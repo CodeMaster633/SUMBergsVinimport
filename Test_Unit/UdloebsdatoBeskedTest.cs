@@ -1,28 +1,32 @@
-//using Business_Logic.BLL;
-//using Data_Access.Model;
-//using DTO_.Model;
+using Business_Logic.BLL;
+using Data_Access.Model;
+using DTO_.Model;
+using IProdukt = DTO_.Model.IProdukt;
 
+namespace Test_Unit;
+public class UdloebsdatoBeskedTest
+{
+    private LagerBLL _lagerBll;
+    [SetUp]
+    public void Setup()
+    {
 
-//namespace Test_Unit;
-
-//[TestFixture]
-//public class UdloebsdatoBeskedTest
-//{
-//    private IProdukt _produkt;
-    
-//    [Test]
-//    public virtual void UdloebsdatoBesked()
-//    {
-//        //Arrange
-//        _produkt = new Mad(99, 200, "TEST", "Dette er fra test UdloebsdatoBesked", new DateTime(2024, 11, 30));
-//        var besked = new Besked(_produkt);
-
-//        //Act
-//        _produkt.TjekUdlobsdato();
+        _lagerBll = new LagerBLL();
+    }
+    [Test]
+    public void UdloebsDatoTest()
+    {
+        //Arrange
+        var p1 = new MadDTO(250, "Burger", 20, "Dette er fra test UdloebsDatoTest", new DateTime(2024, 12, 30));
+        var p2 = new OelDTO(200, "Gamma", 50, "Dette er fra test UdloebsDatoTest", new DateTime(2024, 12, 30), 0.5);
         
-//        //Assert
-//        Console.WriteLine("Test Output: " + besked.ToString());
-//        Assert.That(besked.ToString(), Is.EqualTo("Modtaget besked: Udløbsdato nærmer sig for produktet for produkt: TEST"));        
+        //Act
+        _lagerBll.OpretProdukt(p1);
+        _lagerBll.OpretProdukt(p2);
+        var tjekedeprodukter = _lagerBll.DatoTjek();
         
-//    }
-//}
+        //Assert
+        Assert.That(tjekedeprodukter.Any(p => p is MadDTO mad && mad.Navn == p1.Navn && mad.Udloebsdato == p1.Udloebsdato));
+        Assert.That(tjekedeprodukter.Any(p => p is OelDTO mad && mad.Navn == p2.Navn && mad.Udloebsdato == p2.Udloebsdato));
+    }
+}
