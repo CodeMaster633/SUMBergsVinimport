@@ -151,9 +151,10 @@ namespace Data_Access.Repositories
           using (LagerContext context = new LagerContext())
             {
                 List<DTO_.Model.IProdukt> alleProdukter = GetAlleProdukter();
-                List<DTO_.Model.IProdukt> paaLager = alleProdukter.Where(p => p.LagerId == id).ToList();
+                List<DTO_.Model.IProdukt> paaLager = alleProdukter.Where(p=> p.LagerId == id).ToList();
                 return paaLager;
             }
+           
         }
 
 

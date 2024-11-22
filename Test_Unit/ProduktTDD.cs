@@ -61,7 +61,7 @@ namespace Test_Unit
 
             //ACT
            int produktID = _lagerBll.OpretProdukt(_produktDTO,lager);
-            List<IProdukt> alleProdukter = _lagerBll.GetAlleProdukt();
+           List<IProdukt> alleProdukter = _lagerBll.GetAlleProdukt();
            IProdukt produkt = _lagerBll.GetProdukt(produktID);
 
 
@@ -86,9 +86,9 @@ namespace Test_Unit
             //ACT
            int produktID =  _lagerBll.OpretProdukt(_produktDTO,lager);
            IProdukt produkt = _lagerBll.GetProdukt(produktID);
-            List<IProdukt> alleProdukter = _lagerBll.GetAlleProdukt();
+           List<IProdukt> alleProdukter = _lagerBll.GetAlleProdukt();
            bool produktEksister = alleProdukter.Any(p => p.Id == produkt.Id );
-
+            
             //Assert - sammenligner DTO-objekt fra brugergrænseflade med objekt fra databasen
             Assert.That(produktEksister, Is.True, "Produkt blev ikke fundet");
             Assert.That(produktID, Is.EqualTo(produkt.Id));
