@@ -145,10 +145,11 @@ namespace Data_Access.Repositories
         {
             using (LagerContext context = new LagerContext())
             {
-                LagerDTO lager = LagerMapper.Map(context.Lagre.Find(id));
-                List<DTO_.Model.IProdukt> produkter = lager.Produkter;
-                return produkter;
+                List<DTO_.Model.IProdukt> alleProdukter = GetAlleProdukter();
+                List<DTO_.Model.IProdukt> paaLager = alleProdukter.Where(p=> p.LagerId == id).ToList();
+                return paaLager;
             }
+           
         }
 
 
