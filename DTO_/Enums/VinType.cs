@@ -2,7 +2,7 @@ namespace DTO_.Enums;
 
 public enum VinType
 {
-    Rødvin,
+    Roedvin,
     Hvidvin,
     Rosevin,
     Portvin

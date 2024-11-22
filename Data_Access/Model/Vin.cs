@@ -8,17 +8,20 @@ public class Vin : Produkt
 {
     public Vin(){}
 
-    public Vin(int id, int pris, string navn, string beskrivelse, VinType vinType, double liter)
+    public Vin(int id, int pris, string navn, int antal, string beskrivelse, VinType vinType, double liter, string nationalitet)
     {
         Id = id;
         Pris = pris;
         Navn = navn;
+        Antal = antal;
         Beskrivelse = beskrivelse;
         VinType = vinType;
         Liter = liter;
+        Nationalitet = nationalitet;
     }
     
    
     public DTO_.Enums.VinType VinType { get; set; }
     public double Liter { get; set; }
+    public string Nationalitet { get; set; }
 }

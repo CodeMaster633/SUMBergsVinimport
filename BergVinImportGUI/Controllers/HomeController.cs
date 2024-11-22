@@ -74,7 +74,7 @@ namespace BergVinImportGUI.Controllers
                 new SelectListItem { Text = "NonFood", Value = "NonFood" },
                 new SelectListItem { Text = "Spiritus", Value = "Spiritus" },
                 new SelectListItem { Text = "Vin", Value = "Vin" },
-                new SelectListItem { Text = "Øl", Value = "Øl" }
+                new SelectListItem { Text = "Oel", Value = "Oel" }
             };
         }
 
@@ -91,7 +91,7 @@ namespace BergVinImportGUI.Controllers
         private void TypeVinList()
         {
             ViewBag.VinType = new List<SelectListItem> {
-                new SelectListItem { Text = "Rødvin", Value = "0" },
+                new SelectListItem { Text = "Roedvin", Value = "0" },
                 new SelectListItem { Text = "Hvidvin", Value = "1" },
                 new SelectListItem { Text = "Rosevin", Value = "2" },
                 new SelectListItem { Text = "Portvin", Value = "3" }
@@ -128,9 +128,9 @@ namespace BergVinImportGUI.Controllers
             IProdukt? produktDTO = null;
             if (produktType == "Mad")
             {
-                string udløbsDatoString = formData["UdlobsdatoFelt"];
-                DateTime udløbsDato;
-                if (!DateTime.TryParse(udløbsDatoString, out udløbsDato))
+                string udloebsDatoString = formData["UdlobsdatoFelt"];
+                DateTime udloebsDato;
+                if (!DateTime.TryParse(udloebsDatoString, out udloebsDato))
                 {
                     ModelState.AddModelError("UdlobsdatoFelt", "Ugyldig dato");
                     return View("OpretProdukt");
@@ -140,7 +140,7 @@ namespace BergVinImportGUI.Controllers
                     Navn = navn,
                     Pris = pris,
                     Beskrivelse = beskrivelse,
-                    Udloebsdato = udløbsDato
+                    Udloebsdato = udloebsDato
                 };
             }
             else if (produktType == "NonFood")
@@ -160,8 +160,8 @@ namespace BergVinImportGUI.Controllers
                 string alkoholString = formData["AlkProcentFelt"];
                 int alkoholprocent = int.TryParse(alkoholString, out int parsedProcent) ? parsedProcent : 0;
 
-                string produktionsårString = formData["ProÅrFelt"];
-                int produktionsår = int.TryParse(produktionsårString, out int parsedProduktionsÅr) ? parsedProduktionsÅr : 0;
+                string produktionsaarString = formData["ProAarFelt"];
+                int produktionsaar = int.TryParse(produktionsaarString, out int parsedProduktionsAar) ? parsedProduktionsAar : 0;
 
                 string spiritusString = formData["SpiritusType"];
                 int spiritusType = int.TryParse(spiritusString, out int parsedType) ? parsedType : 0;
@@ -173,7 +173,7 @@ namespace BergVinImportGUI.Controllers
                     Beskrivelse = beskrivelse,
                     Liter = liter,
                     Alkoholprocent = alkoholprocent,
-                    Produktionsår = produktionsår,
+                    Produktionsaar = produktionsaar,
                     SpiritusType = (SpiritusType)spiritusType
                 };
             }
@@ -194,25 +194,25 @@ namespace BergVinImportGUI.Controllers
                     Liter = liter
                 };
             }
-            else if (produktType == "Øl")
+            else if (produktType == "Oel")
             {
                 string literString = formData["LiterFelt"];
                 int liter = int.TryParse(literString, out int parsedLiter) ? parsedLiter : 0;
 
-                string udløbsDatoString = formData["UdlobsdatoFelt"];
-                DateTime udløbsDato;
-                if (!DateTime.TryParse(udløbsDatoString, out udløbsDato))
+                string udloebsDatoString = formData["UdlobsdatoFelt"];
+                DateTime udloebsDato;
+                if (!DateTime.TryParse(udloebsDatoString, out udloebsDato))
                 {
                     ModelState.AddModelError("UdlobsdatoFelt", "Ugyldig dato");
                     return View("OpretProdukt");
                 }
 
-                produktDTO = new ØlDTO()
+                produktDTO = new OelDTO()
                 {
                     Pris = pris,
                     Navn = navn,
                     Beskrivelse = beskrivelse,
-                    Udloebsdato = udløbsDato,
+                    Udloebsdato = udloebsDato,
                     Liter = liter
                 };
             }
