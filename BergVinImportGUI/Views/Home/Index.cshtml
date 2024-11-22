@@ -1,12 +1,56 @@
 ﻿@using DTO_.Model
 @{
-    @using (Html.BeginForm("Index", "Home"))
-    {
-
-    }
+    string selectedLager = ViewBag.SelectedPropertyType as string;
 }
 
-<ol>
+<div class="text-center">
+    <h1 class="display-4">Lagerstyrings Systemet BVI</h1>
+    <p>Find ud af mere <a href="https://bergs-vinimport.dk/">Bergs VinImport</a>.</p>
+</div>
+
+<!-- Form til at vælge lager -->
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "mb-4" }))
+{
+    <div class="mb-3">
+        @Html.Label("Lager", "Vælg lager", new { @class = "form-label" })
+        @Html.DropDownList("Lagre",
+                new SelectList(ViewBag.Lagre, "Value", "Text", selectedLager), // Bevarer valgt værdi
+                "Vælg lager",
+                new { @class = "form-select", @onchange = "this.form.submit();" })
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(selectedLager) && selectedLager != "Vælg lager")
+{
+    int lagerID = int.TryParse(selectedLager, out int parsedID) ? parsedID : 0;
+    LagerDTO lager = @ViewBag.LagerProdukter[lagerID - 1];
+
+    <!-- Vises kun, hvis et lager er valgt -->
+    <div class="mt-4">
+        <h3>Produkter på @lager.Navn</h3>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Produktnavn</th>
+                    <th>Pris</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < lager.Produkter.Count; i++)
+                {
+                    var produkt = lager.Produkter[i];
+                    <tr class="@(i % 2 == 0 ? "even" : "odd")">
+                        <td>@produkt.Navn</td>
+                        <td>@produkt.Pris.ToString("C")</td> <!-- Formatér som valuta -->
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@*<ol>
     @foreach (LagerDTO lager in ViewBag.lagre)
     {
         <li>
@@ -19,16 +63,15 @@
             </ul>
         </li>
     }
-</ol>
+</ol>*@
 
-<div class="text-center">
-    <h1 class="display-4">Lagerstyrings Systemet BVI</h1>
-    <p>Find ud af mere <a href="https://bergs-vinimport.dk/">Bergs VinImport</a>.</p>
-</div>
+<style>
+    table tr.even {
+        background-color: #dceefb;
+    }
 
-@* @using (Html.BeginForm("OpretProdukt", "Home"))
-{
-    <div class="section-spacing">
-        <button type="submit" name="OpretProdukt" value="OpretProdukt">Opret Produkt</button>
-    </div>
-} *@
+    table tr.odd {
+        background-color: #b6d4f2;
+    }
+</style>
+
