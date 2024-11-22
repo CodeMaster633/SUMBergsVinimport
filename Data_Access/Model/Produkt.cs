@@ -14,6 +14,5 @@ namespace Data_Access.Model
 		public int Antal { get; set; }
 		public string Beskrivelse { get; set; }
 		public int LagerId { get; set; }
-
-	}
+    }
 }

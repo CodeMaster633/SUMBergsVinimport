@@ -8,4 +8,5 @@ public class TjekkedeProdukter
     public int Antal { get; set; }
     public DateTime Udloebsdato { get; set; }
     public DateTime TjekketDato { get; set; }
+    public string VisningsTekst => $"{Navn} - {Udloebsdato}";
 }
