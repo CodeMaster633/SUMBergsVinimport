@@ -15,4 +15,8 @@
     <ProjectReference Include="..\DTO_\DTO_.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Model\IBesked.cs" />
+  </ItemGroup>
+
 </Project>

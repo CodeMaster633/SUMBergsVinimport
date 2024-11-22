@@ -19,8 +19,8 @@ namespace Data_Access.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer("Data Source=LAPTOP-TT7JTDJT\\SQLEXPRESS;Initial Catalog=Lagre;Integrated Security = SSPI; TrustServerCertificate=true");
-            optionsBuilder.UseSqlServer("Data Source=LAPTOP-CP8PKIBC\\SQLEXPRESS;Initial Catalog=Lagre;Integrated Security=True; TrustServerCertificate=true");
-            //optionsBuilder.UseSqlServer("Server=localhost,1433;Database=Lagre;User Id=sa;Password=reallyStrongPwd123;TrustServerCertificate=true");
+            //optionsBuilder.UseSqlServer("Data Source=LAPTOP-CP8PKIBC\\SQLEXPRESS;Initial Catalog=Lager;Integrated Security=True; TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("Server=localhost,1433;Database=Lagre;User Id=sa;Password=reallyStrongPwd123;TrustServerCertificate=true");
             //optionsBuilder.UseSqlServer("Data Source=MRCARLSEN\\SQLEXPRESS;Initial Catalog=Lagre;Integrated Security = SSPI; TrustServerCertificate=true");
             optionsBuilder.LogTo(message => Debug.WriteLine(message));
             
@@ -68,7 +68,7 @@ namespace Data_Access.Context
             modelBuilder.Entity<Mad>().ToTable("Mad").HasBaseType<Produkt>();
             modelBuilder.Entity<Nonfood>().ToTable("Nonfood").HasBaseType<Produkt>();
             modelBuilder.Entity<Vin>().ToTable("Vin").HasBaseType<Produkt>();
-            modelBuilder.Entity<Øl>().ToTable("Øl").HasBaseType<Produkt>();
+            modelBuilder.Entity<Oel>().ToTable("Øl").HasBaseType<Produkt>();
             modelBuilder.Entity<Spiritus>().ToTable("Spiritus").HasBaseType<Produkt>();
 
             // dette kode ValueGenereted hvor ved hver post til Database skal der sættes et nyt unikt ID 
@@ -91,7 +91,8 @@ namespace Data_Access.Context
         public DbSet<Nonfood> Nonfoods { get; set; }
         public DbSet<Spiritus> Spiritus { get; set; }
 
-        public DbSet<Øl> Øls { get; set; }
+        public DbSet<Oel> Oel { get; set; }
+        public DbSet<TjekkedeProdukter> TjekkedeProdukter { get; set; }
 
     }
 }

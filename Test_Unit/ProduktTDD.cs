@@ -14,9 +14,8 @@ namespace Test_Unit
     {
 
         private IProdukt _produktDTO;
-        LagerDTO lager = null;
-
         private LagerBLL _lagerBll;
+        private LagerDTO lager;
         [SetUp]
         public void Setup()
         {
@@ -32,7 +31,7 @@ namespace Test_Unit
         public void OpretProduktForventetTestMAD()
         {
             //Arrange 
-            _produktDTO = new MadDTO(200, "TEST", "Dette er fra test ProduktTDD", new DateTime(2026, 10, 11));
+            _produktDTO = new MadDTO(200, "TEST", 10, "Dette er fra test ProduktTDD", new DateTime(2026, 10, 11));
 
         
 
@@ -56,7 +55,7 @@ namespace Test_Unit
         {
             //Arrange 
 
-            _produktDTO = new NonfoodDTO(200, "Test", "Dette er en beksrivelse til nonFood Test");
+            _produktDTO = new NonfoodDTO(200, 10, "Test", "Dette er en beksrivelse til nonFood Test");
 
 
 
@@ -81,7 +80,7 @@ namespace Test_Unit
         public  void OpretProduktForventetTestVin()
         {
             //Arrange 
-            _produktDTO = new VinDTO(200, "TestVin", "Test af ProduktTDD", DTO_.Enums.VinType.Rosevin, 200);
+            _produktDTO = new VinDTO(200,"TestVin", 10, "Test af ProduktTDD", DTO_.Enums.VinType.Rosevin, 200, "Italien");
 
 
             //ACT
@@ -105,7 +104,7 @@ namespace Test_Unit
         public void OpretProduktForventetTestSpiritus()
         {
             //Arrange 
-            _produktDTO = new SpiritusDTO(200, "TestSpiritus", "Dette er ProduktTDD test", 10.00, 24.00, 2023, DTO_.Enums.SpiritusType.Rom);
+            _produktDTO = new SpiritusDTO(200, "TestSpiritus", 200, "Dette er ProduktTDD test", 10.00, 24.00, 2023, DTO_.Enums.SpiritusType.Rom);
 
 
 

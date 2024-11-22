@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Mappers;
 using Data_Access.Model;
+using IProdukt = DTO_.Model.IProdukt;
 
 
 namespace Data_Access.Repositories
@@ -55,13 +56,13 @@ namespace Data_Access.Repositories
                     vin.LagerId = lager.LagerId;
                     context.Vin.Add(vin);
                 }
-                else if (produkt is DTO_.Model.ØlDTO ølDTO)
+                else if (produkt is DTO_.Model.OelDTO oelDTO)
                 {
-                    ølDTO.Id = 0;
-                    Model.Øl øl = ProduktMapper.MapØlTilEntity(ølDTO);
-                    produktID = øl;
-                    øl.LagerId = lager.LagerId;
-                    context.Øls.Add(øl);
+                    oelDTO.Id = 0;
+                    Oel oel = ProduktMapper.MapØlTilEntity(oelDTO);
+                    produktID = oel;
+                    oel.LagerId = lager.LagerId;
+                    context.Oel.Add(oel);
                 }
 
                 context.SaveChanges();
@@ -81,11 +82,11 @@ namespace Data_Access.Repositories
             }
         }
 
-        public static ØlDTO GetØlById(int id)
+        public static OelDTO GetØlById(int id)
         {
             using (LagerContext context = new LagerContext())
             {
-                Øl øl = context.Øls.Find(id);
+                Oel øl = context.Oel.Find(id);
                 return øl != null ? ProduktMapper.MapØlTilDTO(øl) : null;
             }
         }
@@ -135,7 +136,7 @@ namespace Data_Access.Repositories
             using (LagerContext context = new LagerContext())
             {
 
-                List<Model.Lager> lagre = context.Lagre.ToList();
+                List<Lager> lagre = context.Lagre.ToList();
                 List<LagerDTO> lagreDTO = lagre.Select(lager => LagerMapper.Map(lager)).ToList();
                 return lagreDTO;
             }
@@ -160,7 +161,7 @@ namespace Data_Access.Repositories
                 //Man kan bruge entity framework til at samle  ale produktyper i  en list 
                 List<MadDTO> madProdukter = context.Mad.Select(m => ProduktMapper.MapTilMadDTO(m)).ToList();
                 List<VinDTO> vinProdukter = context.Vin.Select(v => ProduktMapper.MapVinTilDTO(v)).ToList();
-                List<ØlDTO> ølProdukter = context.Øls.Select(o => ProduktMapper.MapØlTilDTO(o)).ToList();
+                List<OelDTO> ølProdukter = context.Oel.Select(o => ProduktMapper.MapØlTilDTO(o)).ToList();
                 List<NonfoodDTO> nonFoddProdukter = context.Nonfoods.Select(nF => ProduktMapper.MapTilNonfoodDTO(nF)).ToList();
                 List<SpiritusDTO> spiritusProdukter = context.Spiritus.Select(s => ProduktMapper.MapTilSpiritusDTO(s)).ToList();
 
@@ -178,49 +179,23 @@ namespace Data_Access.Repositories
 
         }
 
-        //public static void TildelLagerReol(LagerDTO lagerDTO, ReolDTO reolDTO)
-        //{
-            
-        //    using (LagerContext context = new LagerContext())
-        //    {
-        //       Lager lager = context.Lagre.FirstOrDefault(l=>l.LagerId == lagerDTO.LagerId);
-        //       Reol reol = context;   
-
-        //        if(lager == null)
-        //        {
-        //            throw new Exception("Lager ikke fundet i databasen");
-        //        }
-
-        //        if(reol == null)
-        //        {
-        //            throw new Exception("Reol ikke fundet i databasen");
-        //        }
-        //        //Tildeler foreign key til reol
-        //        reol.LagerId = lager.LagerId;
-
-        //        context.SaveChanges();
-
-                   
-
-        //    }
-
-        //}
-
-        public static void TildelRelation(string parentId, string childId, DTO_.Model.ReltationType relationType)
+        public static List<DTO_.Model.IProdukt> GetProdukterPaaLager(int lagerId)
         {
-            //     usning()
-            //switch (relationType)
-            //{
-            //	case ReltationType.LagerTilReol:
-            //		var lager = _context.Lagere.Find(parentId);
-            //		var reol = _context.Reoler.Find(childId);
-            //		if (lager == null || reol == null) throw new Exception("Lager eller Reol ikke fundet.");
-            //		reol.LagerId = parentId;
-            //		break;
-            //}
-        }
+            List<DTO_.Model.IProdukt> liste = GetAlleProdukter();
+            List<DTO_.Model.IProdukt> nyListe = new List<DTO_.Model.IProdukt>();
 
-        public static void AddLager(LagerDTO lager)
+            foreach (var produkt in liste)
+            {
+                if (produkt.LagerId == lagerId) {
+                    nyListe.Add(produkt);
+                }
+            }
+
+            return nyListe;
+        }
+        
+
+            public static void AddLager(LagerDTO lager)
         {
             using (LagerContext context = new LagerContext())
             {
@@ -229,16 +204,7 @@ namespace Data_Access.Repositories
                 context.SaveChanges();
             }
         }
-        public static void OpretReol(int antalHylder, int antalPladserPrHylde, LagerDTO lager)
-        {
-            using (LagerContext context = new LagerContext())
-            {
-
-            }
-        }
-
-
-
+       
         public static DTO_.Model.IProdukt GetProdukt(int id)
         {
             using (LagerContext context = new LagerContext())
@@ -254,7 +220,7 @@ namespace Data_Access.Repositories
                     Mad mad => ProduktMapper.MapTilMadDTO(mad),
                     Vin vin => ProduktMapper.MapVinTilDTO(vin),
                     Nonfood nonfood => ProduktMapper.MapTilNonfoodDTO(nonfood), 
-                    Øl øl => ProduktMapper.MapØlTilDTO(øl),
+                    Oel øl => ProduktMapper.MapØlTilDTO(øl),
                     Spiritus spiritus => ProduktMapper.MapTilSpiritusDTO(spiritus),
 
 
@@ -284,6 +250,92 @@ namespace Data_Access.Repositories
                     context.Produkt.Remove((Produkt)produktRemoved);
                     context.SaveChanges();  
                 }
+            }
+        }
+        //Udløbsdato besked logik
+        public static List<IProdukt> TjekUdlobsdato()
+        {
+            using (var context = new LagerContext())
+            {
+                // Hent og map Mad-produkter til DTO'er
+                var madProdukterDto = context.Produkt
+                    .OfType<Mad>()
+                    .Where(m => m.Udloebsdato <= DateTime.Now.AddMonths(3))
+                    .Select(m => ProduktMapper.MapTilMadDTO(m)) // Mapper til MadDTO
+                    .ToList();
+
+                // Hent og map Øl-produkter til DTO'er
+                var olProdukterDto = context.Produkt
+                    .OfType<Oel>()
+                    .Where(o => o.Udloebsdato <= DateTime.Now.AddMonths(3))
+                    .Select(o => ProduktMapper.MapØlTilDTO(o)) // Mapper til OelDTO
+                    .ToList();
+
+                // Hent IDs for allerede tjekkede produkter
+                var tjekId = context.TjekkedeProdukter
+                    .Select(tp => tp.Id)
+                    .ToHashSet();
+                
+                
+
+                // Kombinér og filtrér de nye produkter
+                var nyeMadProdukter = madProdukterDto
+                    .Where(p => !tjekId.Contains(p.Id))
+                    .ToList();
+                
+                var nyeOelProdukter = olProdukterDto
+                    .Where(p => !tjekId.Contains(p.Id))
+                    .ToList();
+
+
+                // Tilføj de nye produkter til listen over tjekkede produkter
+
+                
+
+                    foreach (var madProdukt in nyeMadProdukter)
+                    {
+                        if (!nyeMadProdukter.Contains(madProdukt))
+                        {
+                            context.TjekkedeProdukter.Add(new TjekkedeProdukter
+                            {
+                                TjekId = Guid.NewGuid(),
+                                Navn = madProdukt.Navn,
+                                Antal = madProdukt.Antal,
+                                Udloebsdato = madProdukt.Udloebsdato,
+                                TjekketDato = DateTime.Now
+                            });
+                        }
+                    }
+
+                    foreach (var oelProdukt in nyeOelProdukter)
+                    {
+                        if (!nyeOelProdukter.Contains(oelProdukt))
+                        {
+                        context.TjekkedeProdukter.Add(new TjekkedeProdukter
+                        {
+                            TjekId = Guid.NewGuid(),
+                            Navn = oelProdukt.Navn,
+                            Antal = oelProdukt.Antal,
+                            Udloebsdato = oelProdukt.Udloebsdato,
+                            TjekketDato = DateTime.Now
+                        });
+                    }
+                }
+
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Fejl ved SaveChanges: {ex.Message}");
+                    throw;
+                }
+                var nyeProdukter = nyeMadProdukter.Cast<IProdukt>().ToList();
+                nyeProdukter.AddRange(nyeOelProdukter.Cast<IProdukt>());
+
+                return nyeProdukter;
+                
             }
         }
     }
