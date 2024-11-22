@@ -5,6 +5,7 @@ using DTO_.Model;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.SqlServer.Server;
 using System.Diagnostics;
 
 namespace BergVinImportGUI.Controllers
@@ -20,16 +21,29 @@ namespace BergVinImportGUI.Controllers
         {
             _logger = logger;
         }
-        public IActionResult Index()
+        public IActionResult Index(IFormCollection formData)
         {
-            List<LagerDTO> lagre = lagerBll.getLagre();
-            ViewBag.lagre = lagre;
+
+            ViewBag.Lagre = lagerBll.getLagre().Select(l => new SelectListItem
+            {
+                Value = l.LagerId.ToString(),
+                Text = l.Navn
+            });
+
+            ViewBag.LagerProdukter = lagerBll.getLagre();
+
+            if (formData.ContainsKey("Lagre"))
+            {
+                string selectedLager = formData["Lagre"];
+                ViewBag.SelectedPropertyType = selectedLager;
+            }
+
             return View();
         }
 
         public IActionResult LagerIndex()
         {
-            ViewBag.Lagre = lagerBll.getLagre();
+            ViewBag.lagre = lagerBll.getLagre();
             return View();
         }
 
@@ -38,6 +52,8 @@ namespace BergVinImportGUI.Controllers
             PopulateProductList();
             TypeSpiritusList();
             TypeVinList();
+            LagerList();
+
             if (formData != null && formData.ContainsKey("OpretProdukt"))
             {
                 string selectPropertyItem = formData["Produkters"];
@@ -82,11 +98,21 @@ namespace BergVinImportGUI.Controllers
             };
         }
 
+        private void LagerList()
+        {
+            ViewBag.Lagre = lagerBll.getLagre().Select(l => new SelectListItem
+            {
+                Value = l.LagerId.ToString(),
+                Text = l.Navn
+            }); 
+               
+        }
         public IActionResult GemProdukt(IFormCollection formData)
         {
             PopulateProductList();
             PopulateProductList();
             TypeSpiritusList();
+            LagerList();
 
             // Brug formData for at få værdien
             string produktType = formData["Produkters"];
@@ -95,6 +121,8 @@ namespace BergVinImportGUI.Controllers
             //bruger out til at kunne sætte værdien parsedPris hvis parsing lykkes eller bliver den 0 hvis false
             int pris = int.TryParse(prisString, out int parsedPris) ? parsedPris : 0;
             string beskrivelse = formData["BeskrivelseFelt"];
+            string lagerString = formData["Lagre"];
+            int lagerID = int.TryParse(lagerString, out int parsedID) ? parsedID : 0;
 
             //Opretelse af DTO objekter der skal sendes til databsen 
             IProdukt? produktDTO = null;
@@ -190,7 +218,8 @@ namespace BergVinImportGUI.Controllers
             }
 
             Console.WriteLine("Kig her " + produktDTO.Navn);
-            //lagerBll.OpretProdukt(produktDTO);
+            LagerDTO lager = lagerBll.getLager(lagerID);
+            lagerBll.OpretProdukt(produktDTO,lager);
 
             PopulateProductList();
 

@@ -137,17 +137,21 @@ namespace Data_Access.Repositories
 
                 List<Model.Lager> lagre = context.Lagre.ToList();
                 List<LagerDTO> lagreDTO = lagre.Select(lager => LagerMapper.Map(lager)).ToList();
+                foreach (LagerDTO item  in lagreDTO)
+                {
+                    item.Produkter = getProdukterPaaLager(item.LagerId);
+                }
                 return lagreDTO;
             }
         }
 
-        public static List<DTO_.Model.IProdukt> getProdukterPaaLager(int id)
+        internal static List<DTO_.Model.IProdukt> getProdukterPaaLager(int id)
         {
-            using (LagerContext context = new LagerContext())
+          using (LagerContext context = new LagerContext())
             {
-                LagerDTO lager = LagerMapper.Map(context.Lagre.Find(id));
-                List<DTO_.Model.IProdukt> produkter = lager.Produkter;
-                return produkter;
+                List<DTO_.Model.IProdukt> alleProdukter = GetAlleProdukter();
+                List<DTO_.Model.IProdukt> paaLager = alleProdukter.Where(p => p.LagerId == id).ToList();
+                return paaLager;
             }
         }
 

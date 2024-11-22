@@ -30,6 +30,11 @@
             @Html.TextBox("PrisFelt", null, new { @class = "form-control", @id = "PrisFelt", required = "required" })
         </div>
 
+        <div class="mb-3">
+            @Html.Label("Lagre", "Vælg lager", new { @class = "form-label" })
+            @Html.DropDownList("Lagre", ViewBag.Lagre as List<SelectListItem>, "Vælg lager", new { @class = "form-select" })
+        </div>
+
         @if (selectedProductType == "Mad" || selectedProductType == "Vin" || selectedProductType == "Øl")
         {
             <div class="mb-3">
