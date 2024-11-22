@@ -34,6 +34,7 @@
                 <tr>
                     <th>Produktnavn</th>
                     <th>Pris</th>
+                    <th>Antal</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,6 +44,7 @@
                     <tr class="@(i % 2 == 0 ? "even" : "odd")">
                         <td>@produkt.Navn</td>
                         <td>@produkt.Pris.ToString("C")</td> <!-- Formatér som valuta -->
+                        <td>@produkt.Antal</td>
                     </tr>
                 }
             </tbody>
