@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Produkter nær udløbsdato";
+}
+<h1>@ViewData["Title"]</h1>
+
+<!-- Viser liste over snarlige udløbne produkter -->
+@using (Html.BeginForm("UdløbsdatoIndex", "Home"))
+{
+    <p>Madvarer:</p>
+    @Html.ListBox("UdloebsProdukter", new SelectList(ViewBag.MadList, "Id", "Navn"), new { @class = "form-select" })
+    <br />
+    <p>Øl:</p>
+    @Html.ListBox("UdloebsProdukter", new SelectList(ViewBag.OelList, "Id", "Navn"), new { @class = "form-select" })
+    <br />
+
+
+}
+

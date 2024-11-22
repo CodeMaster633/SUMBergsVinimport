@@ -19,4 +19,9 @@ public class Oel : Produkt
    
     public DateTime Udloebsdato { get; set; }
     public double Liter { get; set; }
+
+    public override string ToString()
+    {
+        return $"Navn: {Navn}, Pris: {Pris} kr, Antal: {Antal}, Udløbsdato: {Udloebsdato.ToShortDateString()}, Liter: {Liter}, Lager ID: {LagerId}";
+    }
 }

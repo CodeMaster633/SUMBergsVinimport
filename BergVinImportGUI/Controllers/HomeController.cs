@@ -244,6 +244,44 @@ namespace BergVinImportGUI.Controllers
             return View();
         }
 
+        public IActionResult Udloebsdato()
+        {
+            var produkter = lagerBll.DatoTjek();
+
+            ViewBag.MadList = produkter.OfType<MadDTO>().Select(m => new
+            {
+                Id = m.Id,
+                Navn = $"{m.Navn} - Udløbsdato: {m.Udloebsdato.ToShortDateString()}"
+            }).ToList();
+
+            ViewBag.OelList = produkter.OfType<OelDTO>().Select(o => new
+            {
+                Id = o.Id,
+                Navn = $"{o.Navn} - Udløbsdato: {o.Udloebsdato.ToShortDateString()}"
+            }).ToList();
+
+            return View();
+        }
+
+        public IActionResult UdloebsdatoIndex()
+        {
+            var produkter = lagerBll.DatoTjek();
+
+            ViewBag.MadList = produkter.OfType<MadDTO>().Select(m => new
+            {
+                Id = m.Id,
+                Navn = $"{m.Navn} - Udløbsdato: {m.Udloebsdato.ToShortDateString()}"
+            }).ToList();
+
+            ViewBag.OelList = produkter.OfType<OelDTO>().Select(o => new
+            {
+                Id = o.Id,
+                Navn = $"{o.Navn} - Udløbsdato: {o.Udloebsdato.ToShortDateString()}"
+            }).ToList();
+
+            return View();
+        }
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
