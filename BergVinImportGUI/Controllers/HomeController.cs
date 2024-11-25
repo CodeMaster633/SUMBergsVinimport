@@ -251,13 +251,17 @@ namespace BergVinImportGUI.Controllers
             ViewBag.MadList = produkter.OfType<MadDTO>().Select(m => new
             {
                 Id = m.Id,
-                Navn = $"{m.Navn} - Udløbsdato: {m.Udloebsdato.ToShortDateString()}"
+                Navn = m.Navn,
+                Udloebsdato = m.Udloebsdato.ToString("dd-MM-yyyy"), 
+                Antal = m.Antal
             }).ToList();
 
             ViewBag.OelList = produkter.OfType<OelDTO>().Select(o => new
             {
                 Id = o.Id,
-                Navn = $"{o.Navn} - Udløbsdato: {o.Udloebsdato.ToShortDateString()}"
+                Navn = o.Navn,
+                Udloebsdato = o.Udloebsdato.ToString("dd-MM-yyyy"), 
+                Antal = o.Antal
             }).ToList();
 
             return View();
@@ -270,13 +274,17 @@ namespace BergVinImportGUI.Controllers
             ViewBag.MadList = produkter.OfType<MadDTO>().Select(m => new
             {
                 Id = m.Id,
-                Navn = $"{m.Navn} - Udløbsdato: {m.Udloebsdato.ToShortDateString()}"
+                Navn = m.Navn,
+                Udloebsdato = m.Udloebsdato.ToString("dd-MM-yyyy"), 
+                Antal = m.Antal
             }).ToList();
 
             ViewBag.OelList = produkter.OfType<OelDTO>().Select(o => new
             {
                 Id = o.Id,
-                Navn = $"{o.Navn} - Udløbsdato: {o.Udloebsdato.ToShortDateString()}"
+                Navn = o.Navn,
+                Udloebsdato = o.Udloebsdato.ToString("dd-MM-yyyy"), 
+                Antal = o.Antal
             }).ToList();
 
             return View();

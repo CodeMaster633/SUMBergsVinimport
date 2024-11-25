@@ -6,13 +6,45 @@
 <!-- Viser liste over snarlige udløbne produkter -->
 @using (Html.BeginForm("UdløbsdatoIndex", "Home"))
 {
-    <p>Madvarer:</p>
-    @Html.ListBox("UdloebsProdukter", new SelectList(ViewBag.MadList, "Id", "Navn"), new { @class = "form-select" })
-    <br />
-    <p>Øl:</p>
-    @Html.ListBox("UdloebsProdukter", new SelectList(ViewBag.OelList, "Id", "Navn"), new { @class = "form-select" })
-    <br />
+    <h2>Madvarer</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Navn</th>
+                <th>Udløbsdato</th>
+                <th>Antal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var madvare in ViewBag.MadList)
+            {
+                <tr>
+                    <td>@madvare.Navn</td>
+                    <td>@madvare.Udloebsdato</td>
+                    <td>@madvare.Antal</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 
-
+    <h2>Øl</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Navn</th>
+                <th>Udløbsdato</th>
+                <th>Antal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var oel in ViewBag.OelList)
+            {
+                <tr>
+                    <td>@oel.Navn</td>
+                    <td>@oel.Udloebsdato</td>
+                    <td>@oel.Antal</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
-
