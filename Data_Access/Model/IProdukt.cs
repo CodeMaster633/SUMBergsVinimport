@@ -8,6 +8,5 @@ public interface IProdukt
     int Antal { get; set; }
     string Beskrivelse { get; set; }
     int LagerId { get; set; }
-
-
+    
 }
