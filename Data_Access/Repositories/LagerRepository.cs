@@ -295,7 +295,7 @@ namespace Data_Access.Repositories
 
                 // Hent IDs for allerede tjekkede produkter
                 var tjekId = context.TjekkedeProdukter
-                    .Select(tp => tp.Id)
+                    .Select(tp => tp.ProduktId)
                     .ToHashSet();
                 
                 
@@ -316,13 +316,14 @@ namespace Data_Access.Repositories
 
                     foreach (var madProdukt in nyeMadProdukter)
                     {
-                        if (!nyeMadProdukter.Contains(madProdukt))
-                        {
+                        if (!context.TjekkedeProdukter.Any(tp => tp.Navn == madProdukt.Navn && tp.Udloebsdato == madProdukt.Udloebsdato))                        {
                             context.TjekkedeProdukter.Add(new TjekkedeProdukter
                             {
                                 TjekId = Guid.NewGuid(),
+                                ProduktId = madProdukt.Id,
                                 Navn = madProdukt.Navn,
                                 Antal = madProdukt.Antal,
+                                LagerId = madProdukt.LagerId,
                                 Udloebsdato = madProdukt.Udloebsdato,
                                 TjekketDato = DateTime.Now
                             });
@@ -331,13 +332,14 @@ namespace Data_Access.Repositories
 
                     foreach (var oelProdukt in nyeOelProdukter)
                     {
-                        if (!nyeOelProdukter.Contains(oelProdukt))
-                        {
+                        if (!context.TjekkedeProdukter.Any(tp => tp.Navn == oelProdukt.Navn && tp.Udloebsdato == oelProdukt.Udloebsdato))                        {
                         context.TjekkedeProdukter.Add(new TjekkedeProdukter
                         {
                             TjekId = Guid.NewGuid(),
+                            ProduktId = oelProdukt.Id,
                             Navn = oelProdukt.Navn,
                             Antal = oelProdukt.Antal,
+                            LagerId = oelProdukt.LagerId,
                             Udloebsdato = oelProdukt.Udloebsdato,
                             TjekketDato = DateTime.Now
                         });

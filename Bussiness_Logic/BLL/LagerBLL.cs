@@ -97,11 +97,8 @@ namespace Business_Logic.BLL
 		{
 			return LagerRepository.GetProdukt(id);
 		}
-
-
-
 		
-		//Udløbsdato besked
+		//Udløbsdato tjekker
 		public List<IProdukt> DatoTjek()
 		{
 			return LagerRepository.TjekUdlobsdato();
