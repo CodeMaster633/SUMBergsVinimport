@@ -99,6 +99,7 @@ namespace Business_Logic.BLL
 		}
 
 
+
 		
 		//Udløbsdato besked
 		public List<IProdukt> DatoTjek()
@@ -106,5 +107,11 @@ namespace Business_Logic.BLL
 			return LagerRepository.TjekUdlobsdato();
 		}
 
+
+		//Metoder til at ændre Produkt
+		public void AEndreAntalProdukt(IProdukt produkt)
+		{
+			LagerRepository.AEdreAntalProdukt(produkt);
+		}
 	}
 }

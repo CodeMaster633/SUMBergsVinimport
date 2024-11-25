@@ -244,6 +244,24 @@ namespace Data_Access.Repositories
             }
         }
 
+
+        internal static Model.Produkt GetEntityProdukter(DTO_.Model.IProdukt produktDTO)
+        {
+          
+
+            return produktDTO switch
+            {
+                MadDTO mad => ProduktMapper.MapTilMadEntity(mad),
+                VinDTO vin => ProduktMapper.MapTilVinEntity(vin),
+                NonfoodDTO nonfood => ProduktMapper.MaptilNonFoodEntity(nonfood),
+                OelDTO øl => ProduktMapper.MapØlTilEntity(øl),
+                SpiritusDTO spiritus => ProduktMapper.MapTilSpiritusEntity(spiritus),
+
+
+            };
+
+        }
+
         public static void FjernProdukt(int id)
         {
           using(LagerContext context = new LagerContext())
@@ -342,6 +360,20 @@ namespace Data_Access.Repositories
                 
             }
         }
+
+        public static void AEdreAntalProdukt(IProdukt produkt)
+        {
+            using (LagerContext context = new LagerContext()) 
+            {
+                Model.Produkt eksisternedeProdukt = GetEntityProdukter(produkt);
+                
+                context.Produkt.Update(eksisternedeProdukt);
+                context.SaveChanges();
+            }
+
+        }
+
+        
     }
 }
 

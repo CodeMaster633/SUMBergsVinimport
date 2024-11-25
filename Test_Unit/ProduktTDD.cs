@@ -33,11 +33,11 @@ namespace Test_Unit
             //Arrange 
             _produktDTO = new MadDTO(200, "TEST", 10, "Dette er fra test ProduktTDD", new DateTime(2026, 10, 11));
 
-        
+
 
             //ACT
-            
-            int _produktDTOId =_lagerBll.OpretProdukt(_produktDTO, lager);
+
+            int _produktDTOId = _lagerBll.OpretProdukt(_produktDTO, lager);
             List<IProdukt> alleProdukter = _lagerBll.GetAlleProdukt();
 
 
@@ -46,12 +46,12 @@ namespace Test_Unit
             bool produktEksister = alleProdukter.Any(p => p.Id == produkt.Id);
             // Assert - sammenligner DTO-objekt fra brugergrænseflade med objekt fra databasen
             Assert.That(produktEksister, Is.True, "Produkt blev ikke fundet");
-            Assert.That(_produktDTOId,Is.EqualTo(produkt.Id));
+            Assert.That(_produktDTOId, Is.EqualTo(produkt.Id));
         }
 
 
         [Test]
-        public  void OpretProduktForventetTestNonFood()
+        public void OpretProduktForventetTestNonFood()
         {
             //Arrange 
 
@@ -60,9 +60,9 @@ namespace Test_Unit
 
 
             //ACT
-           int produktID = _lagerBll.OpretProdukt(_produktDTO,lager);
-           List<IProdukt> alleProdukter = _lagerBll.GetAlleProdukt();
-           IProdukt produkt = _lagerBll.GetProdukt(produktID);
+            int produktID = _lagerBll.OpretProdukt(_produktDTO, lager);
+            List<IProdukt> alleProdukter = _lagerBll.GetAlleProdukt();
+            IProdukt produkt = _lagerBll.GetProdukt(produktID);
 
 
 
@@ -77,18 +77,18 @@ namespace Test_Unit
 
 
         [Test]
-        public  void OpretProduktForventetTestVin()
+        public void OpretProduktForventetTestVin()
         {
             //Arrange 
-            _produktDTO = new VinDTO(200,"TestVin", 10, "Test af ProduktTDD", DTO_.Enums.VinType.Rosevin, 200, "Italien");
+            _produktDTO = new VinDTO(200, "TestVin", 10, "Test af ProduktTDD", DTO_.Enums.VinType.Rosevin, 200, "Italien");
 
 
             //ACT
-           int produktID =  _lagerBll.OpretProdukt(_produktDTO,lager);
-           IProdukt produkt = _lagerBll.GetProdukt(produktID);
-           List<IProdukt> alleProdukter = _lagerBll.GetAlleProdukt();
-           bool produktEksister = alleProdukter.Any(p => p.Id == produkt.Id );
-            
+            int produktID = _lagerBll.OpretProdukt(_produktDTO, lager);
+            IProdukt produkt = _lagerBll.GetProdukt(produktID);
+            List<IProdukt> alleProdukter = _lagerBll.GetAlleProdukt();
+            bool produktEksister = alleProdukter.Any(p => p.Id == produkt.Id);
+
             //Assert - sammenligner DTO-objekt fra brugergrænseflade med objekt fra databasen
             Assert.That(produktEksister, Is.True, "Produkt blev ikke fundet");
             Assert.That(produktID, Is.EqualTo(produkt.Id));
@@ -118,7 +118,7 @@ namespace Test_Unit
 
             // Assert - sammenligner DTO-objekt fra brugergrænseflade med objekt fra databasen
             Assert.That(produktEksister, Is.True, "Produkt blev ikke fundet");
-            Assert.That(produktId,Is.EqualTo(produkt.Id));
+            Assert.That(produktId, Is.EqualTo(produkt.Id));
 
 
 
@@ -126,32 +126,50 @@ namespace Test_Unit
         }
 
 
-           [Test]
-            public void FjernProdukt()
-            {
-                //Arrange & ACT
-    
-                
-              
-            
-            
+        [Test]
+        public void FjernProdukt()
+        {
+            //Arrange & ACT
+
+
+
+
+
             IProdukt specfiktRandomTestObjekt = _lagerBll.GetAlleProdukt().FirstOrDefault(p => p.Beskrivelse.EndsWith("ProduktTDD"));
             _lagerBll.FjernProdukt(specfiktRandomTestObjekt.Id);
             List<IProdukt> alleProdukter = _lagerBll.GetAlleProdukt();
-            bool produktEksister = alleProdukter.Any(p=> p.Id == specfiktRandomTestObjekt.Id);
+            bool produktEksister = alleProdukter.Any(p => p.Id == specfiktRandomTestObjekt.Id);
             //ASSERT
             Assert.That(produktEksister, Is.False);
-         
 
 
 
 
 
 
-            }
 
-       
+        }
 
+
+        [Test]
+        public void ProduktAEndringAntal()
+        {
+            //Arrange 
+            _produktDTO = new MadDTO(200, "TEST", 10, "Dette er fra test ProduktTDD", new DateTime(2026, 10, 11));
+            int produktID = _lagerBll.OpretProdukt(_produktDTO, lager);
+            IProdukt produkt = _lagerBll.GetProdukt(produktID);
+
+            //Act
+
+            produkt.Antal = 8;
+            _lagerBll.AEndreAntalProdukt(produkt);
+            IProdukt testProdukt = _lagerBll.GetProdukt(produktID);
+
+            //Assert 
+            Assert.That(8, Is.EqualTo(testProdukt.Antal));
+
+
+        }
     }
 }
 
