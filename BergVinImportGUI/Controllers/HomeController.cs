@@ -123,6 +123,8 @@ namespace BergVinImportGUI.Controllers
             string beskrivelse = formData["BeskrivelseFelt"];
             string lagerString = formData["Lagre"];
             int lagerID = int.TryParse(lagerString, out int parsedID) ? parsedID : 0;
+            string antalString = formData["AntalFelt"];
+            int antal = int.TryParse(antalString,out int parsedAntal) ? parsedAntal : 0;
 
             //Opretelse af DTO objekter der skal sendes til databsen 
             IProdukt? produktDTO = null;
@@ -139,6 +141,7 @@ namespace BergVinImportGUI.Controllers
                 {
                     Navn = navn,
                     Pris = pris,
+                    Antal = antal,
                     Beskrivelse = beskrivelse,
                     Udloebsdato = udloebsDato
                 };
@@ -149,6 +152,7 @@ namespace BergVinImportGUI.Controllers
                 {
                     Pris = pris,
                     Navn = navn,
+                    Antal = antal,
                     Beskrivelse = beskrivelse
                 };
             }
@@ -172,6 +176,7 @@ namespace BergVinImportGUI.Controllers
                     Navn = navn,
                     Beskrivelse = beskrivelse,
                     Liter = liter,
+                    Antal = antal,
                     Alkoholprocent = alkoholprocent,
                     Produktionsaar = produktionsaar,
                     SpiritusType = (SpiritusType)spiritusType
@@ -189,6 +194,7 @@ namespace BergVinImportGUI.Controllers
                 {
                     Pris = pris,
                     Navn = navn,
+                    Antal = antal,
                     Beskrivelse = beskrivelse,
                     VinType = (VinType)vinType,
                     Liter = liter
@@ -211,6 +217,7 @@ namespace BergVinImportGUI.Controllers
                 {
                     Pris = pris,
                     Navn = navn,
+                    Antal = antal,
                     Beskrivelse = beskrivelse,
                     Udloebsdato = udloebsDato,
                     Liter = liter

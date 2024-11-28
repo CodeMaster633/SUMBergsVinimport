@@ -31,11 +31,16 @@
         </div>
 
         <div class="mb-3">
+            <label for="AntalFelt" class="form-label">Antal:</label>
+            @Html.TextBox("AntalFelt", null, new { @class = "form-control", @id = "AntalFelt", required = "required" })
+        </div>
+
+        <div class="mb-3">
             @Html.Label("Lagre", "Vælg lager", new { @class = "form-label" })
             @Html.DropDownList("Lagre", ViewBag.Lagre as List<SelectListItem>, "Vælg lager", new { @class = "form-select" })
         </div>
 
-        @if (selectedProductType == "Mad" || selectedProductType == "Vin" || selectedProductType == "Øl")
+        @if (selectedProductType == "Mad" || selectedProductType == "Vin" || selectedProductType == "Oel")
         {
             <div class="mb-3">
                 <label for="UdlobsdatoFelt" class="form-label">Udløbsdato:</label>
